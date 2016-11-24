@@ -31,40 +31,34 @@ public class Parser {
 
         // create a new Commands object
         Commands commandsList = new Commands();
-
         try {
             reader = new Scanner(file);
-
             String token;
-            
             // while the file got for line execute the following commands
             while (reader.hasNextLine()) {
-
                 Command command = new Command();
-
                 token = reader.nextLine();
-                token.trim();
+                token = token.trim();
                 String s = "";
-
                 String[] value = new String[2];
-
                 String[] line = token.split(" ");
-
                 switch (line[0]) {
                     case "insert":
-                        command.setOp(Operation.insert);
-
+                    case "delete":
+                        if (line[0].equals("insert")) {
+                            command.setOp(Operation.insert);
+                        }
+                        else {
+                            command.setOp(Operation.delete);
+                        }
                         for (int i = 1; i < line.length; i++) {
                             s += line[i] + " ";
                         }
-
                         value = s.split("<SEP>");
                         command.setValues(value);
                         break;
                     case "remove":
-
                         command.setOp(Operation.remove);
-
                         if (line[1].equals("song")) {
                             command.setTyp(Type.Song);
                         }
@@ -78,50 +72,53 @@ public class Parser {
                         for (int i = 2; i < line.length; i++) {
                             s += line[i] + " ";
                         }
-
                         value[0] = s;
                         command.setValues(value);
-
                         break;
                     case "print":
-                        command.setOp(Operation.print);
-
+                    case "list":
+                        if (line[0].equals("list")) {
+                            command.setOp(Operation.list);
+                        }
+                        else {
+                            command.setOp(Operation.print);
+                        }
                         if (line[1].equals("song")) {
                             command.setTyp(Type.Song);
                         }
                         else if (line[1].equals("artist")) {
                             command.setTyp(Type.Artist);
                         }
-                        else if (line[1].equals("blocks")) {
-                            command.setTyp(Type.Block);
+                        else if (line[0].equals("print")) {
+                            if ((line[1].equals("blocks"))) {
+                                command.setTyp(Type.Block);
+                            }
+                            else if (line[1].equals("graph")) {
+                                command.setTyp(Type.Tree);
+                            }
+                            else {
+                                System.out.println("Illegal type: " + line[1]);
+                            }
                         }
                         else {
                             System.out.println("Illegal type: " + line[1]);
                         }
-
                         for (int i = 2; i < line.length; i++) {
                             s += line[i] + " ";
                         }
-
-                        value = s.split("");
+                        value[0] = s;
                         command.setValues(value);
-
                         break;
                     default:
                         break;
-
                 }
-
                 commandsList.add(command);
-
             }
-
             reader.close();
         }
         catch (IOException exception) {
             exception.printStackTrace();
         }
-
         return commandsList;
     }
 

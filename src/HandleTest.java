@@ -1,59 +1,33 @@
 import student.TestCase;
 
 /**
- * This class test the Handle class
- *
- * @author Broulaye Doumbia
- * @author Cheick Berthe
- * @version 09/05/2016
+ * Test the Handle class.
+ * 
+ * @author CS3114 Instructor and TAs
+ * @version 9/16/2016
  */
+
 public class HandleTest extends TestCase {
-    private Handle handle1;
-    private Handle handle2;
 
     /**
-     * set up local variable
+     * Set up the tests that follow.
      */
     public void setUp() {
-        handle1 = new Handle(4);
-        handle2 = new Handle(1);
+        // Nothing Here.
     }
 
     /**
-     * Test get method
+     * Test the Handle class.
      */
-    public void testgetLocation() {
-        assertEquals(1, handle2.getLocation());
+    public void testH() {
+        Handle myHandle = new Handle(1);
+        Handle lessHandle = new Handle(2);
+        Handle sameHandle = new Handle(1);
+        Handle moreHandle = new Handle(0);
+        assertEquals(myHandle.compareTo(lessHandle), -1);
+        assertEquals(myHandle.compareTo(sameHandle), 0);
+        assertEquals(myHandle.compareTo(moreHandle), 1);
+        assertEquals(myHandle.pos(), 1);
+        assertEquals(myHandle.toString(), "1");
     }
-
-    /**
-     * Test set method
-     */
-    public void testsetLocation() {
-        handle1.setLocation(3);
-        assertEquals(3, handle1.getLocation());
-    }
-
-    /**
-     * test toString method
-     */
-    public void testtoString() {
-        assertEquals("1", handle2.toString());
-    }
-    
-    /**
-     * test isTombstone method
-     */
-    public void testisTombstone() {
-        assertFalse(handle1.isTombStone());
-    }
-    
-    /**
-     * test resetTombstone methode
-     */
-    public void testsetTombstone() {
-        handle1.setTombstone();
-        assertTrue(handle1.isTombStone());
-    }
-
 }

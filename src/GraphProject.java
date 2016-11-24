@@ -2,6 +2,10 @@
  * {Project Description Here}
  */
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * The class containing the main method.
  *
@@ -29,12 +33,73 @@
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
 
+
+/**
+ * Implementation of a song and artist storage system using a memory manager The
+ * class containing the main method.
+ *
+ * @author Cheick Berthe
+ * @author Broulaye Doumbia
+ * @version 11/18/2016
+ */
 public class GraphProject {
     /**
      * @param args
      *     Command line parameters
      */
     public static void main(String[] args) {
-        // This is the main file for the program.
+        String memFile;
+        int numBuffs;
+        int blockSize;
+        int hashSize;
+        String inputfileName;
+        String statFile;
+
+        if (args == null || args.length != 6) {
+            System.out.println("Usage:java GraphProject {memFile} " +
+                    "{numBuffs} {buffSize} {initHashSize} " +
+                    "{commandFile} {statFile}");
+            return;
+        }
+        memFile = args[0];
+        numBuffs = Integer.parseInt(args[1]);
+        blockSize = Integer.parseInt(args[2]);
+        hashSize = Integer.parseInt(args[3]);
+        inputfileName = args[4];
+        statFile = args[5];
+
+        try {
+            // initialize processor
+            Processor processor =
+                    new Processor(hashSize, numBuffs, blockSize, inputfileName, memFile);
+            // process commands
+            processor.process();
+
+            File file = new File("output.txt");
+
+            // create a scanner object
+            Scanner reader;
+
+            try {
+                reader = new Scanner(file);
+
+                String token;
+
+                // while the file got for line execute the following commands
+                while (reader.hasNextLine()) {
+
+                    token = reader.nextLine();
+                    System.out.println(token);
+                }
+                reader.close();
+            }
+            catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.util.Iterator;
 
@@ -11,7 +12,7 @@ import org.apache.commons.collections.Buffer;
  * @version 11/01/2016
  */
 public class BufferPool implements BufferPoolADT {
-
+    private FreeBlockList freeBlocks;
     private BufferBlock[] pool;
     private RandomAccessFile file;
     private int blockSize;
@@ -30,7 +31,9 @@ public class BufferPool implements BufferPoolADT {
      * @param poolSize
      *            represent pool size
      */
-    public BufferPool(String file, int poolSize) {
+    public BufferPool(String file, int poolSize, int blckSz) {
+
+        freeBlocks = new FreeBlockList(poolSize);
         pool = new BufferBlock[poolSize];
         cacheHit = 0;
         cacheMiss = 0;
@@ -40,7 +43,7 @@ public class BufferPool implements BufferPoolADT {
             pool[i] = new BufferBlock();
         }
         size = 0;
-        blockSize = 4096;
+        blockSize = blckSz;
         maxPoolSize = poolSize;
         try {
             this.file = new RandomAccessFile(file, "rw");
@@ -58,24 +61,23 @@ public class BufferPool implements BufferPoolADT {
      *            source of bytes
      * @param sz
      *            size of bytes
-     * @param pos
-     *            position to be inserted in
      */
     @Override
-    public void insert(byte[] space, int sz, int pos) {
+    public int insert(byte[] space, int sz) {
+        int pos = freeBlocks.getNextAvailable(sz);
         int blockPos = posToBlock(pos);
         for (int i = 0; i < size; i++) {
             if (pool[i].getPos() == blockPos) {
                 cacheHit++;
                 System.arraycopy(space, 0, pool[i].getBlock(),
-                        ((4 * pos) - blockPos), sz);
+                        ((blockPos*blockSize)-pos), sz);
                 pool[i].setDirty(true);
                 tempBlock = pool[i];
                 for (int k = i; k > 0; k--) {
                     pool[k] = pool[k - 1];
                 }
                 pool[0] = tempBlock;
-                return;
+                return pos;
             }
         }
         // Not in the buffer pool
@@ -105,6 +107,7 @@ public class BufferPool implements BufferPoolADT {
         System.arraycopy(space, 0, pool[0].getBlock(), ((4 * pos) - blockPos),
                 sz);
         pool[0].setDirty(true);
+        return pos;
     }
 
     /**
@@ -139,16 +142,27 @@ public class BufferPool implements BufferPoolADT {
     @Override
     public void getBytes(byte[] space, int sz, int pos) {
         int blockPos = posToBlock(pos);
+        int start = pos - (blockPos*blockSize);
+        int lenght = 0;
         for (int i = 0; i < size; i++) {
             if (pool[i].getPos() == blockPos) {
                 cacheHit++;
-                System.arraycopy(pool[i].getBlock(), ((4 * pos) - blockPos),
-                        space, 0, sz);
+
+                lenght = getLength(pool[i].getBlock(), start);
+                space = new byte[lenght];
+                int remaining = (start + 2 + lenght) - blockSize;
+                System.arraycopy(pool[i].getBlock(), start+2,
+                        space, 0, (lenght-remaining));
                 tempBlock = pool[i];
                 for (int k = i; k > 0; k--) {
                     pool[k] = pool[k - 1];
                 }
                 pool[0] = tempBlock;
+
+                if(remaining > 0){
+                    /**Span two blocks*/
+                }
+
                 return;
             }
         }
@@ -175,10 +189,37 @@ public class BufferPool implements BufferPoolADT {
         pool[0].setPos(blockPos);
         getBlock(blockPos, pool[0].getBlock());
         pool[0].setDirty(false);
-        System.arraycopy(pool[0].getBlock(), ((4 * pos) - blockPos), space, 0,
-                sz);
+
+        lenght = getLength(pool[0].getBlock(), start);
+        space = new byte[lenght];
+        int remaining = (start + 2 + lenght) - blockSize;
+        System.arraycopy(pool[0].getBlock(), start+2,
+                space, 0, (lenght-remaining));
+
+        if(remaining > 0) {
+            /**Span two blocks*/
+        }
 
     }
+
+
+    private int getLength(byte array[], int start) {
+        return array[start]<<8 + array[start+1];
+    }
+
+    /**
+     * Removes string at given location
+     *
+     * @param location
+     *            location of string
+     */
+    public void removeStringAt(int location) {
+        byte length[] = new byte[2];
+        getBytes(length, 2, location);
+        int size = (length[0] << 8) + length[1];
+        freeBlocks.freeUpSpace(location, size + 2);
+    }
+
 
     /**
      * private method to get the block at position blockPos in the file
@@ -223,7 +264,7 @@ public class BufferPool implements BufferPoolADT {
      * @return the block number
      */
     private int posToBlock(int pos) {
-        return ((pos * 4) / blockSize) * blockSize;
+        return ((pos)/ blockSize) * blockSize;
     }
 
     /**

@@ -10,7 +10,7 @@ public enum Type {
     /**
      * Represent the different types
      */
-    Song, Artist, Block;
+    Song, Graph, Artist, Block;
 
     /**
      * Get a string representaion of the type
@@ -24,8 +24,14 @@ public enum Type {
         else if (this == Artist) {
             return "artist";
         }
-        else {
+        else if(this == Block){
             return "blocks";
+        }
+        else if(this == Graph) {
+            return "graph";
+        }
+        else {
+            return "Illegal Argument";
         }
     }
 

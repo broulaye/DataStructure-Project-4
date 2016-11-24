@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import student.TestCase;
 
 import java.io.FileNotFoundException;
@@ -17,23 +16,9 @@ import java.io.UnsupportedEncodingException;
 public class HashTest extends TestCase {
     private PrintWriter writer;
     private String testString = "test";
-    //private static final String ALPHA_NUMERIC_STRING =
-            //"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    // private static final String ALPHA_NUMERIC_STRING =
+    // "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    /**
-     * this method generate random strings
-     *
-     * @param count
-     *            represent the string length
-     * @return a random string
-     * 
-     *         private static String randomAlphaNumeric(int count) {
-     *         StringBuilder builder = new StringBuilder(); while (count-- != 0)
-     *         { int character = (int) (Math.random() *
-     *         ALPHA_NUMERIC_STRING.length());
-     *         builder.append(ALPHA_NUMERIC_STRING.charAt(character)); } return
-     *         builder.toString(); }
-     */
     /**
      * Sets up the tests that follow.
      */
@@ -56,8 +41,8 @@ public class HashTest extends TestCase {
         try {
             memManager = new MemManager(80);
             myHash = new Hash(2, memManager, testString);
-            assertTrue(myHash.insertString("broulaye", writer));
-            assertTrue(myHash.insertString("Cheick", writer));
+            assertNotNull(myHash.insertString("broulaye", writer));
+            assertNotNull(myHash.insertString("Cheick", writer));
             assertEquals("|broulaye| 2\n|Cheick| 3\ntotal tests: 2\n",
                     myHash.printTable());
             assertTrue(myHash.removeString("broulaye"));
@@ -67,9 +52,9 @@ public class HashTest extends TestCase {
             assertFalse(myHash.removeString("Cheick"));
             assertEquals("total tests: 0\n", myHash.printTable());
             assertEquals(0, myHash.getElement());
-            assertTrue(myHash.insertString("Cheick", writer));
-            assertTrue(myHash.insertString("Cheicks", writer));
-            assertTrue(myHash.insertString("Cheikc", writer));
+            assertNotNull(myHash.insertString("Cheick", writer));
+            assertNotNull(myHash.insertString("Cheicks", writer));
+            assertNotNull(myHash.insertString("Cheikc", writer));
 
         }
         catch (Exception e) {
@@ -101,10 +86,10 @@ public class HashTest extends TestCase {
         try {
             Hash table = new Hash(3, manager, testString);
             String str = "berthe";
-            boolean result1 = table.insertString(str, writer);
-            boolean result2 = table.insertString(str, writer);
-            assertTrue(result1);
-            assertFalse(result2);
+            Handle result1 = table.insertString(str, writer);
+            Handle result2 = table.insertString(str, writer);
+            assertNotNull(result1);
+            assertNotNull(result2);
         }
         catch (Exception e) {
             assertTrue(e instanceof Exception);
@@ -135,9 +120,13 @@ public class HashTest extends TestCase {
      */
     public void testRemoveElement() {
         MemManager manager = new MemManager(1);
+        String word = "Cheicks";
         try {
-            Hash table = new Hash(1, manager, testString);
-            Assert.assertFalse(table.removeString("kodonso"));
+            Hash table = new Hash(10, manager, testString);
+            assertFalse(table.removeString(word));
+            assertNotNull(table.insertString(word, writer));
+            assertNotNull(table.removeString(word));
+            assertNotNull(table.insertString(word, writer));
         }
         catch (Exception e) {
             assertTrue(e instanceof Exception);

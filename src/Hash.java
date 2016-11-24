@@ -51,18 +51,40 @@ public class Hash {
      *            string to be retrieved
      * @return position of retrieved string, -1 if not found
      */
-    public int get(String str) {
+    private int getP(String str) {
         int index = hash(str, valueArray.length);
         int pos = index;
         int i = 0;
         do {
-            if (valueArray[pos] != null && !valueArray[pos].isTombStone() && str.equalsIgnoreCase(handle2String(valueArray[pos]))) {
+            if (valueArray[pos] != null && !valueArray[pos].isTombStone()
+                    && str.equalsIgnoreCase(handle2String(valueArray[pos]))) {
                 return pos;
             }
             pos = (index + ++i * i) % valueArray.length;
         }
         while (pos != index);
         return -1;
+    }
+
+    /**
+     * return the handle at the given position
+     * @param pos represent the position
+     * @return a handle
+     */
+    public Handle getHandle(int pos) {
+        if (pos < 0) {
+            return null;
+        }
+        return valueArray[pos];
+    }
+
+    /**
+     * returns the position of the handle for str
+     * @param str the string to get
+     * @return the position of that string
+     */
+    public int get(String str) {
+        return getP(str);
     }
 
     /**
@@ -82,14 +104,14 @@ public class Hash {
      *            (string to insert)
      * @param writer
      *            used to return status of operation
-     * @return position of insertion
-     * @throws Exception
-     *             when all possible slots have been proved and are occupied
+     * @return handle resulting from insertion
      */
-    public boolean insertString(String str, PrintWriter writer)
-            throws Exception {
-        if (get(str) != -1) {
-            return false;
+    public Handle insertString(String str, PrintWriter writer) {
+        int position = get(str);
+        if (position != -1) {
+            writer.println("|" + str + "| duplicates a record already in the "
+                    + type + " database.");
+            return valueArray[position];
         }
         if (numbElements + 1 > (valueArray.length >> 1)) {
             doubleSize();
@@ -106,8 +128,10 @@ public class Hash {
         }
         numbElements++;
         // store handle after storing string in memory pool
-        valueArray[pos] = manager.insert(str, writer);
-        return true;
+        Handle aHandle = manager.insert(str, writer);
+        valueArray[pos] = aHandle;
+        writer.println("|" + str + "| is added to the " + type + " database.");
+        return aHandle;
     }
 
     /**
@@ -121,9 +145,6 @@ public class Hash {
         int pos = index;
         int i = 0;
         while (valueArray[pos] != null) {
-            if (valueArray[pos].isTombStone()) {
-                break;
-            }
             pos = (index + ++i * i) % valueArray.length;
         }
         valueArray[pos] = handle;
@@ -159,8 +180,6 @@ public class Hash {
      *            The size of the hash table
      * @return The home slot for that string
      */
-    // This is private for distributing hash function in a way that will
-    // pass milestone 1 without change.
     private int hash(String s, int m) {
         int intLength = s.length() / 4;
         long sum = 0;

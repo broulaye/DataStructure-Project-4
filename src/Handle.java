@@ -1,58 +1,74 @@
 /**
- * This class will represent the handle that will store the location of the
- * values in the mem manager
+ * Handle class definition
  *
- * @author Broulaye Doumbia
- * @author Cheick Berthe
- * @version 09/05/2016
+ * @author CS3114 Instructors and TAs
+ * @version 9/15/2016
  */
 
 public class Handle {
-    // stores location of associated string
-    private int location;
+    /**
+     * The position for the associated message in the memory pool
+     */
+    private int thePos;
 
-    // defines the state of handle in hash table
+    /**
+     * defines the state of handle in hash table
+     */
+
     private boolean tombstone;
 
+    // ----------------------------------------------------------
     /**
-     * Constructor that set up the filed with given values
+     * Create a new Handle object.
      *
-     * @param location
-     *            given location
+     * @param p
+     *            Value for position
      */
-    public Handle(int location) {
-        this.location = location;
-        tombstone = false;
+    public Handle(int p) {
+        thePos = p;
     }
 
+    // ----------------------------------------------------------
     /**
-     * get the location
+     * Overload compareTo
      *
-     * @return the location
+     * @param it
+     *            The handle being compared against
+     * @return standard values of -1, 0, 1
      */
-    public int getLocation() {
-        return location;
+    public int compareTo(Handle it) {
+        if (thePos < it.pos()) {
+            return -1;
+        }
+        else if (thePos == it.pos()) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
     }
 
+    // ----------------------------------------------------------
     /**
-     * set the location to a given value
+     * Getter for position
      *
-     * @param location
-     *            given value
+     * @return The position
      */
-    public void setLocation(int location) {
-        this.location = location;
+    public int pos() {
+        return thePos;
     }
 
+    // ----------------------------------------------------------
     /**
-     * print the location
+     * Overload toString
      *
-     * @return a string representation of the location
+     * @return A print string
      */
     public String toString() {
-        return "" + location;
+        return String.valueOf(thePos);
     }
 
+    // -----------------------------------------------------------
     /**
      * check if handle is tombstone
      *
@@ -62,6 +78,7 @@ public class Handle {
         return tombstone;
     }
 
+    // ------------------------------------------------------------
     /**
      * set the tombstone
      */

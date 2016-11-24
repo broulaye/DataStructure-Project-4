@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 public class MemManager {
 
     // memory pool
-    private MemoryPool memoryPool;
+    private BufferPool bufferPool;
 
     /**
      * constructor
@@ -16,8 +16,8 @@ public class MemManager {
      * @param poolSize
      *            size of memory pool in bytes
      */
-    public MemManager(int poolSize) {
-        memoryPool = new MemoryPool(poolSize);
+    public MemManager(int poolSize, int blockSize, String memFile) {
+        bufferPool = new BufferPool(memFile, poolSize, blockSize);
     }
 
     /**
@@ -30,7 +30,18 @@ public class MemManager {
      * @return handle for str
      */
     public Handle insert(String str, PrintWriter writer) {
-        int position = memoryPool.put(str.getBytes(), str.length(), writer);
+        byte temp[] = str.getBytes();
+        byte tempByte[] = new byte[str.length()+2];
+        int length = str.length();
+        // copy size to pool as 2 byte number
+        tempByte[0] = (byte) ((length >> 8) & 0xFF);
+        tempByte[1] = (byte) (length & 0xFF);
+        int k =0;
+        for(int i =2; i < length; i++) {
+            tempByte[i] = temp[k];
+            k++;
+        }
+        int position = bufferPool.insert(tempByte, length+2);
         return new Handle(position);
     }
 
@@ -41,17 +52,17 @@ public class MemManager {
      *            handle referring to position
      */
     public void remove(Handle theHandle) {
-        memoryPool.removeStringAt(theHandle.getLocation());
+        bufferPool.removeStringAt(theHandle.pos());
     }
 
     /**
      * Dump content of memory pool
      * 
      * @return a string representation of the memory pool
-     */
+
     public String dump() {
-        return memoryPool.printFreeBlocks();
-    }
+        return bufferPool.printFreeBlocks();
+    }*/
 
     /**
      * get string corresponding to given handle
@@ -61,7 +72,8 @@ public class MemManager {
      * @return string from memory pool
      */
     public String get(Handle theHandle) {
-
-        return memoryPool.getStringAt(theHandle.getLocation());
+        byte temp[] = null;
+        bufferPool.getBytes(temp,0,theHandle.pos());
+        return temp.toString();
     }
 }

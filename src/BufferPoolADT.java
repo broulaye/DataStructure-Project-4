@@ -16,10 +16,8 @@ public interface BufferPoolADT {
      *            array to be inserted
      * @param sz
      *            size of the array
-     * @param pos
-     *            position to be inserted at
-     */
-    public void insert(byte[] space, int sz, int pos);
+    */
+    public int insert(byte[] space, int sz);
 
     /**
      * Copy "sz" bytes from position "pos" of the buffered storage to "space"

@@ -29,6 +29,8 @@ public class TypeTest extends TestCase {
         assertEquals("blocks", newType.toString());
         newType = Type.Song;
         assertEquals("song", newType.toString());
+        newType = Type.Graph;
+        assertEquals("graph", newType.toString());
     }
 
 }
