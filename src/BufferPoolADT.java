@@ -29,5 +29,5 @@ public interface BufferPoolADT {
      * @param pos
      *            position where to ge value
      */
-    public void getBytes(byte[] space, int sz, int pos);
+    public byte[] getBytes(byte[] space, int sz, int pos);
 }

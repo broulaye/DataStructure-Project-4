@@ -30,18 +30,7 @@ public class MemManager {
      * @return handle for str
      */
     public Handle insert(String str, PrintWriter writer) {
-        byte temp[] = str.getBytes();
-        byte tempByte[] = new byte[str.length()+2];
-        int length = str.length();
-        // copy size to pool as 2 byte number
-        tempByte[0] = (byte) ((length >> 8) & 0xFF);
-        tempByte[1] = (byte) (length & 0xFF);
-        int k =0;
-        for(int i =2; i < length; i++) {
-            tempByte[i] = temp[k];
-            k++;
-        }
-        int position = bufferPool.insert(tempByte, length+2);
+        int position = bufferPool.insert(str.getBytes(), str.length());
         return new Handle(position);
     }
 
@@ -73,7 +62,8 @@ public class MemManager {
      */
     public String get(Handle theHandle) {
         byte temp[] = null;
-        bufferPool.getBytes(temp,0,theHandle.pos());
-        return temp.toString();
+        temp = bufferPool.getBytes(temp,0,theHandle.pos());
+        String s = new String(temp);
+        return s;
     }
 }
