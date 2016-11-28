@@ -1,9 +1,5 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.RandomAccessFile;
-import java.util.Iterator;
-
-import org.apache.commons.collections.Buffer;
 
 /**
  * 
@@ -65,6 +61,8 @@ public class BufferPool implements BufferPoolADT {
     @Override
     public int insert(byte[] space, int sz) {
         int pos = freeBlocks.getNextAvailable(sz);
+
+
         int blockPos = posToBlock(pos);
         for (int i = 0; i < size; i++) {
             if (pool[i].getPos() == blockPos) {
@@ -147,7 +145,6 @@ public class BufferPool implements BufferPoolADT {
         for (int i = 0; i < size; i++) {
             if (pool[i].getPos() == blockPos) {
                 cacheHit++;
-
                 lenght = getLength(pool[i].getBlock(), start);
                 space = new byte[lenght];
                 int remaining = (start + 2 + lenght) - blockSize;

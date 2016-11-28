@@ -94,7 +94,7 @@ public class Parser {
                                 command.setTyp(Type.Block);
                             }
                             else if (line[1].equals("graph")) {
-                                command.setTyp(Type.Tree);
+                                command.setTyp(Type.Graph);
                             }
                             else {
                                 System.out.println("Illegal type: " + line[1]);

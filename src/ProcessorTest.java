@@ -21,14 +21,14 @@ public class ProcessorTest extends TestCase {
      */
     public void setUp() {
         try {
-            processor = new Processor(10, 30, "P1sampleInut.txt");
+            processor = new Processor(10, 30, 50, "P4sampleInut.txt", "procTest1.txt");
         }
         catch (Exception e) {
             assertTrue(e instanceof FileNotFoundException);
         }
         
         try {
-            processor = new Processor(10, 30, "P1sampleInput.txt");
+            processor = new Processor(10, 30, 40, "P4sampleInput.txt", "procTest2.txt");
         }
         catch (Exception e) {
             e.printStackTrace();

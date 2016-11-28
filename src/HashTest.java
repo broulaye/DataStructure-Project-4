@@ -39,7 +39,7 @@ public class HashTest extends TestCase {
         Hash myHash;
         MemManager memManager;
         try {
-            memManager = new MemManager(80);
+            memManager = new MemManager(80, 50, "mem.txt");
             myHash = new Hash(2, memManager, testString);
             assertNotNull(myHash.insertString("broulaye", writer));
             assertNotNull(myHash.insertString("Cheick", writer));
@@ -70,7 +70,7 @@ public class HashTest extends TestCase {
 
         Hash table;
         try {
-            table = new Hash(-2, new MemManager(2), testString);
+            table = new Hash(-2, new MemManager(2, 20, "memtext4.txt"), testString);
             table.insertString("cheick", writer);
         }
         catch (Exception e) {
@@ -82,7 +82,7 @@ public class HashTest extends TestCase {
      * Test for duplicate strings.
      */
     public void testDuplicateStrings() {
-        MemManager manager = new MemManager(3);
+        MemManager manager = new MemManager(3, 4, "memtest.txt");
         try {
             Hash table = new Hash(3, manager, testString);
             String str = "berthe";
@@ -101,7 +101,7 @@ public class HashTest extends TestCase {
      * TestgetElement
      */
     public void testgetElement() {
-        MemManager manager = new MemManager(3);
+        MemManager manager = new MemManager(3, 6, "memtest5.txt");
         try {
             Hash table = new Hash(3, manager, testString);
             String str = "berthe";
@@ -119,7 +119,7 @@ public class HashTest extends TestCase {
      * Test Delete element from empty hash table
      */
     public void testRemoveElement() {
-        MemManager manager = new MemManager(1);
+        MemManager manager = new MemManager(1,5, "memtest7.txt");
         String word = "Cheicks";
         try {
             Hash table = new Hash(10, manager, testString);
