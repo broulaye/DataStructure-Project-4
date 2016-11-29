@@ -89,7 +89,7 @@ public class BufferPool implements BufferPoolADT {
         else {
             cacheHit++;
         }
-
+        
         /**Might create problem if there is only enough space for one byte
          * Maybe creating a temp array with everything in it might work best*/
         pool[result].getBlock()[start] = (byte) ((sz >> 8) & 0xFF);
@@ -168,7 +168,7 @@ public class BufferPool implements BufferPoolADT {
         int result = findBlock(blockPos);
         if(result == -1){
             cacheMiss++;
-            loadBlock(blockPos+1);
+            loadBlock(blockPos);
             pool[0].setDirty(false);
             result = 0;
         }
@@ -370,5 +370,17 @@ public class BufferPool implements BufferPoolADT {
      */
     public int getNumDiscWrite() {
         return numDiscWrite;
+    }
+
+    /**
+     * print free block list
+     *
+     * @return a string representation of the blocks
+     */
+    public String printFreeBlocks() {
+        if (freeBlocks.isEmpty()) {
+            return "(" + (pool.length) + "," + "0)";
+        }
+        return freeBlocks.printBlocks();
     }
 }
