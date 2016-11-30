@@ -12,8 +12,8 @@ public class BufferBlock {
     /**
      * Default constructor
      */
-    public BufferBlock() {
-        aBlock = new byte[4096];
+    public BufferBlock(int size) {
+        aBlock = new byte[size];
         pos = 0;
         isDirty = false;
     }
