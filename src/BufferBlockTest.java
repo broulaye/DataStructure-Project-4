@@ -14,7 +14,7 @@ public class BufferBlockTest extends TestCase {
         byte[] bytes = new byte[13];
         BufferBlock aBlock = new BufferBlock(bytes, 23, true);
         Assert.assertTrue(aBlock.isDirty());
-        BufferBlock bBlock = new BufferBlock();
+        BufferBlock bBlock = new BufferBlock(53);
         bBlock.setBlock(bytes);
         bBlock.setDirty(false);
         Assert.assertFalse(bBlock.isDirty());

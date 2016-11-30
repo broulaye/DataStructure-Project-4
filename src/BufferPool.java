@@ -37,12 +37,13 @@ public class BufferPool implements BufferPoolADT {
         cacheHit = 0;
         cacheMiss = 0;
         numDiscWrite = 0;
-        tempBlock = new BufferBlock();
+        blockSize = blckSz;
+        tempBlock = new BufferBlock(blockSize);
         for (int i = 0; i < poolSize; i++) {
-            pool[i] = new BufferBlock();
+            pool[i] = new BufferBlock(blockSize);
         }
         size = 0;
-        blockSize = blckSz;
+
         maxPoolSize = poolSize;
         try {
             this.file = new RandomAccessFile(file, "rw");
@@ -63,67 +64,66 @@ public class BufferPool implements BufferPoolADT {
      */
     @Override
     public int insert(byte[] space, int sz) {
-
+        // Find next available block
         int pos = freeBlocks.getNextAvailable(sz+2);
 
+
         while(pos == -1) {
+            //keep expanding free block list until available block is found
             freeBlocks.expand(expandBy, length);
             length += expandBy;
             pos = freeBlocks.getNextAvailable(sz+2);
         }
 
+
+        // get position of block corresponding to given position
         int blockPos = posToBlock(pos);
-        int start = (blockPos*blockSize)-pos;
-        if (start<0){
-            start *= -1;
-        }
-        //try to find block in the buffer pool
-        int result = findBlock(blockPos);
+        // get start position of free space
+        int start = pos - (blockPos * blockSize);
 
-        if(result == -1) {
-            // Not in the buffer pool
-            cacheMiss++;
-            loadBlock(blockPos);
-            result = 0;
-        }
-        else {
-            cacheHit++;
-        }
-        
-        /**Might create problem if there is only enough space for one byte
-         * Maybe creating a temp array with everything in it might work best*/
-        pool[result].getBlock()[start] = (byte) ((sz >> 8) & 0xFF);
-        pool[result].getBlock()[start+1] = (byte) (sz & 0xFF);
+        byte temp[] = new byte[sz + 2];
+        temp[0] = (byte) ((sz >> 8) & 0xFF);
+        temp[1] = (byte) (sz & 0xFF);
+        System.arraycopy(space, 0, temp, 2, sz);
 
+        int remaining = sz + 2;
+        do {
+            //try to find block in the buffer pool
+            int result = findBlock(blockPos);
 
-        int remaining = (start+sz+2) - blockSize;
-        if(remaining < 0) {
-            remaining = 0;
-        }
-        System.arraycopy(space, 0, pool[result].getBlock(),
-                (start+2), sz-remaining);
-        pool[result].setDirty(true);
-        tempBlock = pool[result];
-        for (int k = result; k > 0; k--) {
-            pool[k] = pool[k - 1];
-        }
-        pool[0] = tempBlock;
-
-        /**Maybe put this in a while loop and update remaining
-         * So far it only works if the result span only two blocks*/
-        if(remaining > 0) {
-            result = findBlock(blockPos+1);
             if(result == -1) {
+                // Not in the buffer pool
                 cacheMiss++;
-                loadBlock(blockPos+1);
+                loadBlock(blockPos);
                 result = 0;
             }
             else {
                 cacheHit++;
             }
-            System.arraycopy(space, (sz-remaining), pool[result].getBlock(),
-                    0, remaining);
-        }
+
+            //check if temp will overflow current block
+            if(remaining > blockSize - start){
+                System.arraycopy(temp, (sz + 2 - remaining), pool[result].getBlock(), start, blockSize);
+                blockPos++;
+                start = 0;
+            }
+            else{
+                System.arraycopy(temp, (sz + 2 - remaining), pool[result].getBlock(), start, remaining);
+
+            }
+            //update remaining and current block in buffer pool
+            remaining -= blockSize;
+            pool[result].setDirty(true);
+            //shift all blocks down once
+            tempBlock = pool[result];
+            for (int k = result; k > 0; k--) {
+                pool[k] = pool[k - 1];
+            }
+
+            pool[0] = tempBlock;
+
+        } while(remaining > 0);
+
         return pos;
 
     }
@@ -160,11 +160,43 @@ public class BufferPool implements BufferPoolADT {
     @Override
     public byte[] getBytes(byte[] space, int sz, int pos) {
         int blockPos = posToBlock(pos);
-        int start = (blockPos*blockSize)-pos;
-        if (start<0){
-            start *= -1;
+        int start = pos - (blockPos * blockSize);
+
+        int result = findBlockForRead(blockPos);
+
+        int length = (pool[result].getBlock()[start] << 8);
+        // check if length bytes span two blocks
+        if (start + 1 > blockSize - 1){
+            blockPos++;
+            // load two consecutive blocks to read length bytes
+            result = findBlockForRead(blockPos);
+            start = 0;
         }
-        int length;
+        length += (pool[result].getBlock()[start]);
+        space = new byte[length];
+        int remaining = length;
+        // reset start cursor if first byte value is beyond block limit
+        if(start + 2 > blockSize - 1){
+            start = 0;
+        }
+        blockPos++;
+        do{
+           int res = findBlockForRead(blockPos);
+           //check if remaining will span blocks
+            if(remaining > blockSize - start) {
+                System.arraycopy(pool[res].getBlock(), start, space, length - remaining,blockSize - start);
+                blockPos++;
+                start = 0;
+            }else{
+                System.arraycopy(pool[res].getBlock(), start, space, length - remaining, remaining);
+            }
+            remaining -= blockSize;
+        }while(remaining > 0);
+
+        return space;
+    }
+
+    private int findBlockForRead(int blockPos){
         int result = findBlock(blockPos);
         if(result == -1){
             cacheMiss++;
@@ -175,42 +207,8 @@ public class BufferPool implements BufferPoolADT {
         else {
             cacheHit++;
         }
-
-        /**Might create problem if the second byte needed for the length is in the next block*/
-        length = getLength(pool[result].getBlock(), start);
-        space = new byte[length];
-        int remaining = (start + 2 + length) - blockSize;
-        if(remaining < 0) {
-            remaining = 0;
-        }
-        System.arraycopy(pool[result].getBlock(), start+2,
-                space, 0, (length-remaining));
-        tempBlock = pool[result];
-        for (int k = result; k > 0; k--) {
-            pool[k] = pool[k - 1];
-        }
-        pool[0] = tempBlock;
-
-        if(remaining > 0){
-            /**Span two blocks*/
-            result = findBlock(blockPos+1);
-            if(result == -1) {
-                cacheMiss++;
-                loadBlock(blockPos+1);
-                pool[0].setDirty(false);
-                result = 0;
-            }
-            else {
-                cacheHit++;
-            }
-            System.arraycopy(pool[result].getBlock(), 0,
-                    space, (length-remaining), remaining);
-        }
-
-        return space;
+        return result;
     }
-
-
     /**
      * This function find a given block in the buffer pool
      * @param blockPos represent position of the block in the file
@@ -228,7 +226,7 @@ public class BufferPool implements BufferPoolADT {
     }
 
     /***
-     * This function load a given block in the buffer pool
+     * This function loads a given block in the buffer pool
      * @param blockPos position of the block in the file
      */
     private void loadBlock(int blockPos) {
@@ -261,7 +259,7 @@ public class BufferPool implements BufferPoolADT {
      * @return length of the record
      */
     private int getLength(byte array[], int start) {
-        int length = (array[start]<<8) + array[start+1];
+        int length = (array[start] << 8) + array[start + 1];
         return length;
     }
 
