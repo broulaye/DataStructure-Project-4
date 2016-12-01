@@ -65,7 +65,7 @@ public class BufferPool implements BufferPoolADT {
     @Override
     public int insert(byte[] space, int sz) {
         // Find next available block
-        int pos = freeBlocks.getNextAvailable(sz+2);
+        int pos = freeBlocks.getNextAvailable(sz + 2);
 
 
         while(pos == -1) {
@@ -103,16 +103,20 @@ public class BufferPool implements BufferPoolADT {
 
             //check if temp will overflow current block
             if(remaining > blockSize - start){
-                System.arraycopy(temp, (sz + 2 - remaining), pool[result].getBlock(), start, blockSize);
+                int from = (sz + 2 - remaining);
+                int len = blockSize - start;
+                System.arraycopy(temp, from, pool[result].getBlock(), start, len);
+                //update remaining
+                remaining -= len;
                 blockPos++;
                 start = 0;
             }
             else{
                 System.arraycopy(temp, (sz + 2 - remaining), pool[result].getBlock(), start, remaining);
-
+                //update remaining and current block in buffer pool
+                remaining -= blockSize;
             }
-            //update remaining and current block in buffer pool
-            remaining -= blockSize;
+
             pool[result].setDirty(true);
             //shift all blocks down once
             tempBlock = pool[result];
@@ -125,7 +129,6 @@ public class BufferPool implements BufferPoolADT {
         } while(remaining > 0);
 
         return pos;
-
     }
 
     /**
@@ -187,11 +190,13 @@ public class BufferPool implements BufferPoolADT {
                 System.arraycopy(pool[res].getBlock(), start, space, length - remaining,blockSize - start);
                 blockPos++;
                 start = 0;
+                remaining -= blockSize - start;
             }else{
                 System.arraycopy(pool[res].getBlock(), start, space, length - remaining, remaining);
+                remaining -= blockSize;
             }
-            remaining -= blockSize;
-        }while(remaining > 0);
+
+        } while(remaining > 0);
 
         return space;
     }
@@ -234,7 +239,7 @@ public class BufferPool implements BufferPoolADT {
             tempBlock = pool[size - 1];
             if (pool[size - 1].isDirty()) {
                 writeToFile(pool[size - 1].getBlock(),
-                        pool[size - 1].getPos());
+                        pool[size - 1].getPos() * blockSize);
             }
             for (int i = size - 1; i > 0; i--) {
                 pool[i] = pool[i - 1];
@@ -252,16 +257,7 @@ public class BufferPool implements BufferPoolADT {
         getBlock(blockPos, pool[0].getBlock());
     }
 
-    /**
-     * this function get the length of the record in the file
-     * @param array byte array that contains the length
-     * @param start where to start reading the length
-     * @return length of the record
-     */
-    private int getLength(byte array[], int start) {
-        int length = (array[start] << 8) + array[start + 1];
-        return length;
-    }
+
 
     /**
      * Removes string at given location
@@ -329,7 +325,7 @@ public class BufferPool implements BufferPoolADT {
     public void close() {
         for (int i = 0; i < size; i++) {
             if (pool[i].isDirty()) {
-                writeToFile(pool[i].getBlock(), pool[i].getPos());
+                writeToFile(pool[i].getBlock(), pool[i].getPos() * blockSize);
             }
         }
 

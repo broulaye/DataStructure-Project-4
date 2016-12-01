@@ -61,6 +61,7 @@ public class Processor {
                 }
             }
             writer.close();
+            memoryManager.closePool();
         } catch (IOException exception) {
             exception.printStackTrace();
         }
