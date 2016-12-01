@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5b71ee7-936a-480f-9ae4-c7b9cf703153" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/GraphProject.class" afterPath="$PROJECT_DIR$/bin/GraphProject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mem.txt" afterPath="$PROJECT_DIR$/mem.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output.txt" afterPath="$PROJECT_DIR$/output.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BufferBlock.java" afterPath="$PROJECT_DIR$/src/BufferBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BufferPool.java" afterPath="$PROJECT_DIR$/src/BufferPool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GraphProject.java" afterPath="$PROJECT_DIR$/src/GraphProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MemManager.java" afterPath="$PROJECT_DIR$/src/MemManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Processor.java" afterPath="$PROJECT_DIR$/src/Processor.java" />
-    </list>
+    <list default="true" id="f5b71ee7-936a-480f-9ae4-c7b9cf703153" name="Default" comment="" />
     <ignored path="DataStructure-Project-4.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -714,12 +704,12 @@
       <workItem from="1480485373798" duration="563000" />
       <workItem from="1480520177198" duration="105000" />
       <workItem from="1480520329115" duration="15681000" />
-      <workItem from="1480613913325" duration="47000" />
+      <workItem from="1480613913325" duration="88000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64212000" />
+    <option name="totallyTimeSpent" value="64253000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1934" height="1048" extended-state="0" />
