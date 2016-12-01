@@ -68,7 +68,7 @@ public class Graph {
     public void removeEdge(int remove) {
         for(int i=0; i<graph.size(); i++) {
             if(graph.get(i).getNeighboor().contains(remove)) {
-                graph.get(i).getNeighboor().remove(remove);
+                graph.get(i).getNeighboor().removeFirstOccurrence(remove);
                 numOfEdge--;
                 return;
             }
