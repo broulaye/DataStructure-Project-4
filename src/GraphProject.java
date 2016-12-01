@@ -74,7 +74,6 @@ public class GraphProject {
                     new Processor(hashSize, numBuffs, blockSize, inputfileName, memFile);
             // process commands
             processor.process();
-
             File file = new File("output.txt");
 
             // create a scanner object

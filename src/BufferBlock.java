@@ -91,4 +91,7 @@ public class BufferBlock {
         this.isDirty = isDirty2;
     }
 
+    public String toString(){
+        return new String(this.aBlock);
+    }
 }

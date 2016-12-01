@@ -72,9 +72,12 @@ public class MemManager {
      */
     public String get(Handle theHandle) {
         byte temp[] = null;
-        temp = bufferPool.getBytes(temp,0,theHandle.pos());
-        String s = new String(temp);
-        return s;
+        temp = bufferPool.getBytes(temp,0, theHandle.pos());
+        return new String(temp);
+    }
+
+    public void closePool() {
+        bufferPool.close();
     }
 
 
