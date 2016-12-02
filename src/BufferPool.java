@@ -175,22 +175,24 @@ public class BufferPool implements BufferPoolADT {
             result = findBlockForRead(blockPos);
             start = 0;
         }
-        length += (pool[result].getBlock()[start]);
+        length += (pool[result].getBlock()[start + 1]);
         space = new byte[length];
         int remaining = length;
         // reset start cursor if first byte value is beyond block limit
         if(start + 2 > blockSize - 1){
             start = 0;
-        }
-        blockPos++;
+            blockPos++;
+        }else start += 2;
+
         do{
            int res = findBlockForRead(blockPos);
            //check if remaining will span blocks
             if(remaining > blockSize - start) {
-                System.arraycopy(pool[res].getBlock(), start, space, length - remaining,blockSize - start);
+                int len = blockSize - start;
+                System.arraycopy(pool[res].getBlock(), start, space, length - remaining, len);
                 blockPos++;
                 start = 0;
-                remaining -= blockSize - start;
+                remaining = remaining - len;
             }else{
                 System.arraycopy(pool[res].getBlock(), start, space, length - remaining, remaining);
                 remaining -= blockSize;
@@ -254,7 +256,7 @@ public class BufferPool implements BufferPoolADT {
         }
         pool[0] = tempBlock;
         pool[0].setPos(blockPos);
-        getBlock(blockPos, pool[0].getBlock());
+        getBlock(blockPos * blockSize, pool[0].getBlock());
     }
 
 
