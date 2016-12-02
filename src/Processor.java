@@ -105,7 +105,7 @@ public class Processor {
         if (what == Type.Song) {
             removed = songHashTable.removeString(str);
             if ( removed != null) {
-                graph.removeEdge(removed.pos());
+                graph.removeNode(removed.getVertex());
                 writer.println(
                         "|" + str + "| is removed from the song database.");
             } else {
@@ -115,7 +115,7 @@ public class Processor {
         } else if (what == Type.Artist) {
             removed = artistHashTable.removeString(str);
             if (removed != null) {
-                graph.removeNode(removed.pos());
+                graph.removeNode(removed.getVertex());
                 writer.println(
                         "|" + str + "| is removed from the artist database.");
             } else {
@@ -140,8 +140,9 @@ public class Processor {
         song = song.trim();
         Handle artistHandle = artistHashTable.insertString(artist, writer);
         Handle songHandle = songHashTable.insertString(song, writer);
-        graph.addNode(artistHandle.pos());
-        graph.addEdge(artistHandle.pos(), songHandle.pos());
+        graph.addNode(artistHandle.pos(), artistHandle);
+        graph.addNode(songHandle.pos(), songHandle);
+        graph.addEdge(artistHandle.getVertex(), songHandle.getVertex());
 
     }
 

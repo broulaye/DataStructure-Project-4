@@ -8,12 +8,14 @@ import student.TestCase;
  */
 public class GraphTest extends TestCase {
     private Graph graph;
+    private Handle handle;
 
     /**
      * Set up our variable
      */
     public void setUp() {
         graph = new Graph();
+        handle = new Handle(1);
     }
 
     /**
@@ -21,28 +23,20 @@ public class GraphTest extends TestCase {
      */
     public void testGetNumOfNode() {
         assertEquals(0, graph.getNumOfNode());
-        graph.addNode(1);
+        graph.addNode(1, handle);
         assertEquals(1, graph.getNumOfNode());
     }
 
-    /**
-     * Test getNumOfEdge method
-     */
-    public void testGetNumOfEdge() {
-        assertEquals(0, graph.getNumOfEdge());
-        graph.addNode(1);
-        graph.addEdge(1, 1);
-        assertEquals(1, graph.getNumOfEdge());
-    }
+
 
     /**
      * Test addNode method
      */
     public void testAddNode() {
         assertEquals(0, graph.getNumOfNode());
-        graph.addNode(1);
+        graph.addNode(1, handle);
         assertEquals(1, graph.getNumOfNode());
-        graph.addNode(1);
+        graph.addNode(1, handle);
         assertEquals(1, graph.getNumOfNode());
     }
 
@@ -50,13 +44,15 @@ public class GraphTest extends TestCase {
      * Test removeNode method
      */
     public void testRemoveNode() {
-
+        Handle handle3 = new Handle(2);
         assertEquals(0, graph.getNumOfNode());
-        graph.removeNode(1);
-        assertEquals(0, graph.getNumOfNode());
-        graph.addNode(1);
+        graph.addNode(1, handle);
+        graph.addNode(2, handle3);
+        graph.addEdge(0, 1);
+        assertEquals(2, graph.getNumOfNode());
+        graph.removeNode(0);
         assertEquals(1, graph.getNumOfNode());
-        graph.removeNode(1);
+        graph.removeNode(0);
         assertEquals(0, graph.getNumOfNode());
 
     }
@@ -65,54 +61,43 @@ public class GraphTest extends TestCase {
      * Test addEdge method
      */
     public void testAddEdge() {
-        assertEquals(0, graph.getNumOfEdge());
-        graph.addNode(1);
-        graph.addEdge(1, 1);
-        assertEquals(1, graph.getNumOfEdge());
-        graph.addEdge(1, 1);
-        assertEquals(1, graph.getNumOfEdge());
-        graph.addEdge(2, 1);
-        assertEquals(1, graph.getNumOfEdge());
-        graph.addNode(2);
-        graph.addEdge(2, 1);
-        assertEquals(2, graph.getNumOfEdge());
 
-    }
+        Handle handle2 = new Handle(2);
+        graph.addNode(1, handle);
+        graph.addNode(2, handle2);
 
-    /**
-     * Test removeEdge method
-     */
-    public void testRemoveEdge() {
-        assertEquals(0, graph.getNumOfEdge());
-        graph.addNode(1);
-        graph.addEdge(1, 1);
-        assertEquals(1, graph.getNumOfEdge());
-        graph.removeEdge(2);
-        assertEquals(1, graph.getNumOfEdge());
-        graph.removeEdge(1);
-        assertEquals(0, graph.getNumOfEdge());
-        graph.addEdge(1, 2);
-        assertEquals(1, graph.getNumOfEdge());
-
-    }
-
-    /**
-     * Test getNeighboors method
-     */
-    public void testGetNeighboors() {
-        assertNull(graph.getNeighboors(1));
-        graph.addNode(1);
-        graph.addEdge(1, 1);
-        assertNotNull(graph.getNeighboors(1));
-        assertNull(graph.getNeighboors(2));
+        assertEquals(0, graph.getVertex(0).getNeighboor().size());
+        assertEquals(0, graph.getVertex(1).getNeighboor().size());
+        graph.addEdge(0, 1);
+        assertEquals(1, graph.getVertex(0).getNeighboor().size());
+        assertEquals(1, graph.getVertex(1).getNeighboor().size());
 
 
     }
+
+
 
     /**
      * Test printGraph method
      */
     public void testPrintGraph() {
         assertEquals("", graph.printGraph());
+    }
+
+    /**
+     * Test union method
+     */
+    public void testUnion() {
+        Handle handle2 = new Handle(2);
+        Handle handle3 = new Handle(3);
+        graph.addNode(1, handle);
+        graph.addNode(2, handle2);
+        graph.addNode(3, handle3);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.union();
+        graph.computeConnectedComponents();
+        assertEquals(1, graph.getConnectedComponents());
+        assertEquals(2, graph.getLargestSize());
     }
 }

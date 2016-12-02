@@ -12,6 +12,11 @@ public class Handle {
     private int thePos;
 
     /**
+     * The vertex the handle is in
+     */
+    private int vertex;
+
+    /**
      * defines the state of handle in hash table
      */
 
@@ -26,6 +31,7 @@ public class Handle {
      */
     public Handle(int p) {
         thePos = p;
+        vertex = -1;
     }
 
     // ----------------------------------------------------------
@@ -84,5 +90,21 @@ public class Handle {
      */
     public void setTombstone() {
         tombstone = true;
+    }
+
+    /**
+     * Get vertex of the handle
+     * @return vertex of the handle
+     */
+    public int getVertex() {
+        return vertex;
+    }
+
+    /**
+     * set vertex of the handle
+     * @param vertex new vertex for the handle
+     */
+    public void setVertex(int vertex) {
+        this.vertex = vertex;
     }
 }

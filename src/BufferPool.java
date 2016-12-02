@@ -169,12 +169,13 @@ public class BufferPool implements BufferPoolADT {
 
         int length = (pool[result].getBlock()[start] << 8);
         // check if length bytes span two blocks
-        if (start + 1 > blockSize - 1){
+        if (start + 1 == blockSize){
             blockPos++;
             // load two consecutive blocks to read length bytes
             result = findBlockForRead(blockPos);
             start = 0;
         }
+
         length += (pool[result].getBlock()[start]);
         space = new byte[length];
         int remaining = length;
@@ -266,10 +267,26 @@ public class BufferPool implements BufferPoolADT {
      *            location of string
      */
     public void removeStringAt(int location) {
-        byte length[] = new byte[2];
-        getBytes(length, 2, location);
-        int size = (length[0] << 8) + length[1];
-        freeBlocks.freeUpSpace(location, size + 2);
+        int lenght = getLength(location);
+        freeBlocks.freeUpSpace(location, lenght + 2);
+    }
+
+    public int getLength(int location) {
+        int blockPos = posToBlock(location);
+        int start = location - (blockPos * blockSize);
+
+        int result = findBlockForRead(blockPos);
+
+        int length = (pool[result].getBlock()[start] << 8);
+        // check if length bytes span two blocks
+        if (start + 1 == blockSize ){
+            blockPos++;
+            // load two consecutive blocks to read length bytes
+            result = findBlockForRead(blockPos);
+            start = 0;
+        }
+        length += (pool[result].getBlock()[start]);
+        return length;
     }
 
 
