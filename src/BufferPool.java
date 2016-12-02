@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
- * 
+ *
  * @author Broulaye Doumbia
  * @author Cheick Berthe
  * @version 11/01/2016
@@ -23,7 +23,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * constructor that creates a new buffer pool from file
-     * 
+     *
      * @param file
      *            represent file name
      * @param poolSize
@@ -56,7 +56,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * Copy "sz" bytes from "space" to position "pos" in the buffered storage
-     * 
+     *
      * @param space
      *            source of bytes
      * @param sz
@@ -133,7 +133,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * private method that write bytes array to the file at a specified position
-     * 
+     *
      * @param block2
      *            block to be inserted
      * @param bPos
@@ -152,7 +152,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * Copy "sz" bytes from position "pos" of the buffered storage to "space"
-     * 
+     *
      * @param space
      *            destination of bytes
      * @param sz
@@ -169,29 +169,30 @@ public class BufferPool implements BufferPoolADT {
 
         int length = (pool[result].getBlock()[start] << 8);
         // check if length bytes span two blocks
-        if (start + 1 == blockSize){
+        if (start + 1 > blockSize - 1){
             blockPos++;
             // load two consecutive blocks to read length bytes
             result = findBlockForRead(blockPos);
             start = 0;
-        }
-
+        }else start++;
         length += (pool[result].getBlock()[start]);
         space = new byte[length];
         int remaining = length;
         // reset start cursor if first byte value is beyond block limit
-        if(start + 2 > blockSize - 1){
+        if(start + 1 > blockSize - 1){
             start = 0;
-        }
-        blockPos++;
+            blockPos++;
+        }else start ++;
+
         do{
-           int res = findBlockForRead(blockPos);
-           //check if remaining will span blocks
+            int res = findBlockForRead(blockPos);
+            //check if remaining will span blocks
             if(remaining > blockSize - start) {
-                System.arraycopy(pool[res].getBlock(), start, space, length - remaining,blockSize - start);
+                int len = blockSize - start;
+                System.arraycopy(pool[res].getBlock(), start, space, length - remaining, len);
                 blockPos++;
                 start = 0;
-                remaining -= blockSize - start;
+                remaining = remaining - len;
             }else{
                 System.arraycopy(pool[res].getBlock(), start, space, length - remaining, remaining);
                 remaining -= blockSize;
@@ -255,7 +256,7 @@ public class BufferPool implements BufferPoolADT {
         }
         pool[0] = tempBlock;
         pool[0].setPos(blockPos);
-        getBlock(blockPos, pool[0].getBlock());
+        getBlock(blockPos * blockSize, pool[0].getBlock());
     }
 
 
@@ -267,11 +268,6 @@ public class BufferPool implements BufferPoolADT {
      *            location of string
      */
     public void removeStringAt(int location) {
-        int lenght = getLength(location);
-        freeBlocks.freeUpSpace(location, lenght + 2);
-    }
-
-    public int getLength(int location) {
         int blockPos = posToBlock(location);
         int start = location - (blockPos * blockSize);
 
@@ -279,20 +275,21 @@ public class BufferPool implements BufferPoolADT {
 
         int length = (pool[result].getBlock()[start] << 8);
         // check if length bytes span two blocks
-        if (start + 1 == blockSize ){
+        if (start + 1 > blockSize - 1){
             blockPos++;
             // load two consecutive blocks to read length bytes
             result = findBlockForRead(blockPos);
             start = 0;
-        }
+        }else start++;
         length += (pool[result].getBlock()[start]);
-        return length;
+
+        freeBlocks.freeUpSpace(location, length + 2);
     }
 
 
     /**
      * private method to get the block at position blockPos in the file
-     * 
+     *
      * @param blockPos
      *            position of block
      * @param block
@@ -311,7 +308,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * get the number of records in the file
-     * 
+     *
      * @return number of records
      */
     public int getNumRecord() {
@@ -327,7 +324,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * convert a position to a block position
-     * 
+     *
      * @param pos
      *            position to convert
      * @return the block number
@@ -358,7 +355,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * get number of cache hit
-     * 
+     *
      * @return number of cache hit
      */
     public int getCacheHit() {
@@ -367,7 +364,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * get number of cache miss
-     * 
+     *
      * @return number of cache miss
      */
     public int getCacheMiss() {
@@ -376,7 +373,7 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * get number of disc write
-     * 
+     *
      * @return number of disc write
      */
     public int getNumDiscWrite() {
