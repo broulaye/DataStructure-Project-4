@@ -367,4 +367,16 @@ public class BufferPool implements BufferPoolADT {
     public int getNumDiscWrite() {
         return numDiscWrite;
     }
+
+    /**
+     * print free block list
+     *
+     * @return a string representation of the blocks
+     */
+    public String printFreeBlocks() {
+        if (freeBlocks.isEmpty()) {
+            return "(" + (pool.length) + "," + "0)";
+        }
+        return freeBlocks.printBlocks();
+    }
 }

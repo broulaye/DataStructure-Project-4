@@ -15,6 +15,7 @@ public class Processor {
     private Hash songHashTable;
     private Hash artistHashTable;
     private MemManager memoryManager;
+    private Graph graph;
 
     /**
      * Constructor that set the fields to provided values
@@ -30,6 +31,7 @@ public class Processor {
         memoryManager = new MemManager(poolSize, blockSize, memFile);
         this.songHashTable = new Hash(hashSize, memoryManager, "Song");
         this.artistHashTable = new Hash(hashSize, memoryManager, "Artist");
+        graph = new Graph();
 
     }
 
@@ -82,10 +84,10 @@ public class Processor {
                 writer.print(artistHashTable.printTable());
                 break;
             case Block:
-                //writer.println(memoryManager.dump());
+                writer.println(memoryManager.dump());
                 break;
             case Graph:
-
+                writer.println(graph.printGraph());
                 break;
             default:
                 break;
@@ -99,8 +101,11 @@ public class Processor {
      */
     private void remove(Type what, String str, PrintWriter writer) {
         str = str.trim();
+        Handle removed;
         if (what == Type.Song) {
-            if (songHashTable.removeString(str)) {
+            removed = songHashTable.removeString(str);
+            if ( removed != null) {
+                graph.removeEdge(removed.pos());
                 writer.println(
                         "|" + str + "| is removed from the song database.");
             } else {
@@ -108,7 +113,9 @@ public class Processor {
                         "|" + str + "| does not exist in the song database.");
             }
         } else if (what == Type.Artist) {
-            if (artistHashTable.removeString(str)) {
+            removed = artistHashTable.removeString(str);
+            if (removed != null) {
+                graph.removeNode(removed.pos());
                 writer.println(
                         "|" + str + "| is removed from the artist database.");
             } else {
@@ -131,9 +138,10 @@ public class Processor {
             throws Exception {
         artist = artist.trim();
         song = song.trim();
-        artistHashTable.insertString(artist, writer);
-        songHashTable.insertString(song, writer);
-
+        Handle artistHandle = artistHashTable.insertString(artist, writer);
+        Handle songHandle = songHashTable.insertString(song, writer);
+        graph.addNode(artistHandle.pos());
+        graph.addEdge(artistHandle.pos(), songHandle.pos());
 
     }
 

@@ -222,15 +222,15 @@ public class Hash {
      *            string to remove
      * @return true if operation was successful
      */
-    public boolean removeString(String str) {
+    public Handle removeString(String str) {
         int where = get(str);
         if (where == -1) {
-            return false;
+            return null;
         }
         valueArray[where].setTombstone();
         manager.remove(valueArray[where]);
         numbElements--;
-        return true;
+        return valueArray[where];
     }
 
     /**

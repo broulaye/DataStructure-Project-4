@@ -35,6 +35,16 @@ public class MemManager {
     }
 
     /**
+     * Dump content of memory pool
+     *
+     * @return a string representation of the memory pool
+     */
+    public String dump() {
+        return bufferPool.printFreeBlocks();
+    }
+
+
+    /**
      * Free a block at position specified by theHandle Merge adjacent blocks
      *
      * @param theHandle
@@ -69,4 +79,6 @@ public class MemManager {
     public void closePool() {
         bufferPool.close();
     }
+
+
 }
