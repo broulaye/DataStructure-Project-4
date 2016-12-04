@@ -16,6 +16,7 @@ public interface BufferPoolADT {
      *            array to be inserted
      * @param sz
      *            size of the array
+     * @return position in buffer pool
     */
     public int insert(byte[] space, int sz);
 
@@ -28,6 +29,7 @@ public interface BufferPoolADT {
      *            size to be copied
      * @param pos
      *            position where to ge value
+     * @return byte array containig result
      */
     public byte[] getBytes(byte[] space, int sz, int pos);
 }

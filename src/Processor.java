@@ -20,31 +20,38 @@ public class Processor {
     /**
      * Constructor that set the fields to provided values
      *
-     * @param hashSize  represent the size of the hash table
-     * @param blockSize represent the size of the memory manager
-     * @param fileName  represent the file to be parsed
-     * @throws Exception exception is thrown if the parsing failed
+     * @param hashSize
+     *            represent the size of the hash table
+     * @param numBuff
+     *            represent number of buffers
+     * @param blockSize
+     *            represent the size for a block in the memory pool
+     * @param fileName
+     *            represent the file to be parsed
+     * @param memFile
+     *            represent the name of the file that will store the memory pool
+     * @throws Exception
+     *             exception is thrown if the parsing failed
      */
-    public Processor(int hashSize, int poolSize, int blockSize, String fileName, String memFile)
-            throws Exception {
+    public Processor(int hashSize, int numBuff, int blockSize, String fileName,
+            String memFile) throws Exception {
         this.commands = Parser.parse(fileName);
-        memoryManager = new MemManager(poolSize, blockSize, memFile);
-        this.songHashTable = new Hash(hashSize, memoryManager, "Song");
-        this.artistHashTable = new Hash(hashSize, memoryManager, "Artist");
+        memoryManager = new MemManager(numBuff, blockSize, memFile);
+        this.songHashTable = new Hash(hashSize, memoryManager, "song");
+        this.artistHashTable = new Hash(hashSize, memoryManager, "artist");
         graph = new Graph();
 
     }
 
     /**
-     * @throws Exception various exception from nested calls
+     * @throws Exception
+     *             various exception from nested calls
      */
     public void process() throws Exception {
         try {
-            int count = 0;
             PrintWriter writer = new PrintWriter("output.txt", "UTF-8");
             LinkedList<Command> list = commands.getCommandList();
             for (Command command : list) {
-                count++;
                 switch (command.getOp()) {
                     case insert:
                         insert(command.getValues()[0], command.getValues()[1],
@@ -64,7 +71,8 @@ public class Processor {
             }
             writer.close();
             memoryManager.closePool();
-        } catch (IOException exception) {
+        }
+        catch (IOException exception) {
             exception.printStackTrace();
         }
     }
@@ -72,22 +80,28 @@ public class Processor {
     /**
      * print content of given type of database
      *
-     * @param type   requested type of database
-     * @param writer used for output
+     * @param type
+     *            requested type of database
+     * @param writer
+     *            used for output
      */
     private void printContent(Type type, PrintWriter writer) {
         switch (type) {
             case Song:
-                writer.print(songHashTable.printTable());
+                // writer.print(songHashTable.printTable());
+                System.out.print(songHashTable.printTable());
                 break;
             case Artist:
-                writer.print(artistHashTable.printTable());
+                // writer.print(artistHashTable.printTable());
+                System.out.print(artistHashTable.printTable());
                 break;
             case Block:
-                writer.println(memoryManager.dump());
+                // writer.println(memoryManager.dump());
+                System.out.println(memoryManager.dump());
                 break;
             case Graph:
-                writer.println(graph.printGraph());
+                // writer.println(graph.printGraph());
+                System.out.println(graph.printGraph());
                 break;
             default:
                 break;
@@ -95,32 +109,38 @@ public class Processor {
     }
 
     /**
-     * @param what   type to be removed
-     * @param str    string to be removed
-     * @param writer for status report
+     * @param what
+     *            type to be removed
+     * @param str
+     *            string to be removed
+     * @param writer
+     *            for status report
      */
     private void remove(Type what, String str, PrintWriter writer) {
         str = str.trim();
         Handle removed;
         if (what == Type.Song) {
             removed = songHashTable.removeString(str);
-            if ( removed != null) {
+            if (removed != null) {
                 graph.removeNode(removed.getVertex());
-                writer.println(
+                System.out.println(
                         "|" + str + "| is removed from the song database.");
-            } else {
-                writer.println(
+            }
+            else {
+                System.out.println(
                         "|" + str + "| does not exist in the song database.");
             }
-        } else if (what == Type.Artist) {
+        }
+        else if (what == Type.Artist) {
             removed = artistHashTable.removeString(str);
             if (removed != null) {
                 graph.removeNode(removed.getVertex());
-                writer.println(
+                System.out.println(
                         "|" + str + "| is removed from the artist database.");
-            } else {
-                writer.println(
-                        "|" + str + "| does not exist in the artist database.");
+            }
+            else {
+                System.out.println("|" + str
+                        + "| does not exist in the artist database.");
             }
 
         }
@@ -129,19 +149,23 @@ public class Processor {
     /**
      * Insert
      *
-     * @param artist artist name
-     * @param song   song title
-     * @param writer used for status output
-     * @throws Exception exception from inner calls
+     * @param artist
+     *            artist name
+     * @param song
+     *            song title
+     * @param writer
+     *            used for status output
+     * @throws Exception
+     *             exception from inner calls
      */
     private void insert(String artist, String song, PrintWriter writer)
             throws Exception {
         artist = artist.trim();
         song = song.trim();
-        Handle artistHandle = artistHashTable.insertString(artist, writer);
-        Handle songHandle = songHashTable.insertString(song, writer);
-        graph.addNode(artistHandle.pos(), artistHandle);
-        graph.addNode(songHandle.pos(), songHandle);
+        Handle artistHandle = artistHashTable.insertString(artist);
+        Handle songHandle = songHashTable.insertString(song);
+        artistHandle.setVertex(graph.addNode(artistHandle.getVertex()));
+        songHandle.setVertex(graph.addNode(songHandle.getVertex()));
         graph.addEdge(artistHandle.getVertex(), songHandle.getVertex());
 
     }

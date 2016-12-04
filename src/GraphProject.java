@@ -1,18 +1,7 @@
-/**
- * {Project Description Here}
- */
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-
-/**
- * The class containing the main method.
- *
- * @author {Your Name Here}
- * @version {Put Something Here}
- */
-
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 // On my honor:
 //
 // - I have not used source code obtained from another student,
@@ -33,7 +22,6 @@ import java.util.Scanner;
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
 
-
 /**
  * Implementation of a song and artist storage system using a memory manager The
  * class containing the main method.
@@ -45,7 +33,7 @@ import java.util.Scanner;
 public class GraphProject {
     /**
      * @param args
-     *     Command line parameters
+     *            Command line parameters
      */
     public static void main(String[] args) {
         String memFile;
@@ -56,9 +44,9 @@ public class GraphProject {
         String statFile;
 
         if (args == null || args.length != 6) {
-            System.out.println("Usage:java GraphProject {memFile} " +
-                    "{numBuffs} {buffSize} {initHashSize} " +
-                    "{commandFile} {statFile}");
+            System.out.println("Usage:java GraphProject {memFile} "
+                    + "{numBuffs} {buffSize} {initHashSize} "
+                    + "{commandFile} {statFile}");
             return;
         }
         memFile = args[0];
@@ -70,31 +58,16 @@ public class GraphProject {
 
         try {
             // initialize processor
-            Processor processor =
-                    new Processor(hashSize, numBuffs, blockSize, inputfileName, memFile);
+            Processor processor = new Processor(hashSize, numBuffs, blockSize,
+                    inputfileName, memFile);
             // process commands
+            long start = System.currentTimeMillis();
             processor.process();
-            File file = new File("output.txt");
-
-            // create a scanner object
-            Scanner reader;
-
-            try {
-                reader = new Scanner(file);
-
-                String token;
-
-                // while the file got for line execute the following commands
-                while (reader.hasNextLine()) {
-
-                    token = reader.nextLine();
-                    System.out.println(token);
-                }
-                reader.close();
-            }
-            catch (IOException exception) {
-                exception.printStackTrace();
-            }
+            long end = System.currentTimeMillis();
+            PrintWriter writer = new PrintWriter(
+                    new FileOutputStream(new File(statFile), true));
+            writer.append((end - start) + "\n");
+            writer.close();
         }
         catch (Exception e) {
             e.printStackTrace();

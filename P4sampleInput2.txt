@@ -1,0 +1,18 @@
+print blocks
+print artist
+print graph
+insert Another Johnny Winter<SEP>Johnny Winter's first song
+print blocks
+print artist
+print blocks
+print graph
+remove artist Another Johnny Winter
+print blocks
+print artist
+print blocks
+print graph
+remove song Johnny Winter's first song
+print blocks
+print artist
+print blocks
+print graph

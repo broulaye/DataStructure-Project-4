@@ -148,14 +148,14 @@ public class DLLinkedListTest extends TestCase {
      * remove the first and last elements
      */
     public void testRemoveObj() {
-        assertFalse(list.remove(null));
+        assertFalse(list.removeValue(null));
         list.add("A");
         list.add("B");
-        assertTrue(list.remove("A"));
+        assertTrue(list.removeValue("A"));
         assertEquals("B", list.get(0));
         assertEquals(1, list.size());
         list.add("C");
-        assertTrue(list.remove("C"));
+        assertTrue(list.removeValue("C"));
         assertEquals("B", list.get(0));
     }
 
@@ -237,7 +237,7 @@ public class DLLinkedListTest extends TestCase {
         list.add("dance");
         list.add(0, "safety");
         list.clear();
-        assertFalse(list.remove("safety"));
+        assertFalse(list.removeValue("safety"));
         Exception exception;
         exception = null;
         try {

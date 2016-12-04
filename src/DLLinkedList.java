@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * This class represent a generic double linked list
  *
@@ -251,7 +254,7 @@ public class DLLinkedList<T> {
      * @return true if the object was found and removed
      */
 
-    public boolean remove(T obj) {
+    public boolean removeValue(T obj) {
         Node<T> current = head.next();
         while (!current.equals(tail)) {
             if (current.getData().equals(obj)) {
@@ -301,6 +304,84 @@ public class DLLinkedList<T> {
     public T get(int index) {
 
         return getNodeAtIndex(index).getData();
+    }
+
+    /**
+     * Checks if the list contains the given object
+     *
+     * @param obj
+     *            the object to check for
+     * @return true if it contains the object
+     */
+    public boolean contains(T obj) {
+        Node<T> current = head;
+        while (current != null) {
+            if (obj.equals(current.data)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    /**
+     * get the iterator
+     * 
+     * @return the iterator
+     */
+    public Iterator<T> iterator() {
+        return new DLListIterator<T>();
+    }
+
+    /**
+     * This implement the iterator class
+     * 
+     * @author Broulaye Doumbia
+     *
+     * @param <A>
+     *            represent the generic type
+     */
+    public class DLListIterator<A> implements Iterator<T> {
+
+        private Boolean nextCalled;
+        private Node<T> node;
+
+        /**
+         * Creates a new DLListIterator
+         */
+        public DLListIterator() {
+            nextCalled = false;
+            node = head;
+        }
+
+        /**
+         * Checks if there are more elements in the list
+         *
+         * @return true if there are more elements in the list
+         */
+        @Override
+        public boolean hasNext() {
+            return node.next() != tail;
+        }
+
+        /**
+         * Gets the next value in the list
+         *
+         * @return the next value
+         * @throws NoSuchElementException
+         *             if there are no nodes left in the list
+         */
+        @Override
+        public T next() {
+            if (hasNext()) {
+                node = node.next();
+                nextCalled = true;
+                return node.getData();
+            }
+            else {
+                throw new NoSuchElementException();
+            }
+        }
     }
 
 }

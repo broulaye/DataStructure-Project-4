@@ -1,4 +1,3 @@
-import java.io.PrintWriter;
 
 /**
  * @author Cheick Berthe
@@ -13,11 +12,16 @@ public class MemManager {
     /**
      * constructor
      *
-     * @param poolSize
-     *            size of memory pool in bytes
+     * @param numBuffs
+     *            represent number of buffers
+     * @param blockSize
+     *            represent the size for a block in the memory pool
+     * @param memFile
+     *            represent the name of the file that will store the memory
+     *            pool.
      */
-    public MemManager(int poolSize, int blockSize, String memFile) {
-        bufferPool = new BufferPool(memFile, poolSize, blockSize);
+    public MemManager(int numBuffs, int blockSize, String memFile) {
+        bufferPool = new BufferPool(memFile, numBuffs, blockSize);
     }
 
     /**
@@ -25,11 +29,9 @@ public class MemManager {
      *
      * @param str
      *            string to be stored
-     * @param writer
-     *            used to return status of operation
      * @return handle for str
      */
-    public Handle insert(String str, PrintWriter writer) {
+    public Handle insert(String str) {
         int position = bufferPool.insert(str.getBytes(), str.length());
         return new Handle(position);
     }
@@ -42,7 +44,6 @@ public class MemManager {
     public String dump() {
         return bufferPool.printFreeBlocks();
     }
-
 
     /**
      * Free a block at position specified by theHandle Merge adjacent blocks
@@ -58,10 +59,9 @@ public class MemManager {
      * Dump content of memory pool
      * 
      * @return a string representation of the memory pool
-
-    public String dump() {
-        return bufferPool.printFreeBlocks();
-    }*/
+     * 
+     *         public String dump() { return bufferPool.printFreeBlocks(); }
+     */
 
     /**
      * get string corresponding to given handle
@@ -71,14 +71,16 @@ public class MemManager {
      * @return string from memory pool
      */
     public String get(Handle theHandle) {
-        byte temp[] = null;
-        temp = bufferPool.getBytes(temp,0, theHandle.pos());
+        byte[] temp = null;
+        temp = bufferPool.getBytes(temp, 0, theHandle.pos());
         return new String(temp);
     }
 
+    /**
+     * This method close and flush buffer pool
+     */
     public void closePool() {
         bufferPool.close();
     }
-
 
 }

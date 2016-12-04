@@ -1,3 +1,4 @@
+
 /**
  * Represent the free block list keeping track of the available free blocks
  *
@@ -35,6 +36,8 @@ public class FreeBlockList extends DLLinkedList<Block> {
         if (size() == 0) {
             add(new Block(oldLength, oldLength + additionalLength - 1));
             poolLength += additionalLength;
+            System.out.println(
+                    "Memory pool expanded to be " + poolLength + " bytes.");
             return;
         }
         Block lastBlock = get(size() - 1);
@@ -44,8 +47,10 @@ public class FreeBlockList extends DLLinkedList<Block> {
         else {
             add(new Block(oldLength, oldLength + additionalLength - 1));
         }
-        
+
         poolLength += additionalLength;
+        System.out.println(
+                "Memory pool expanded to be " + poolLength + " bytes.");
     }
 
     /**
@@ -210,7 +215,7 @@ public class FreeBlockList extends DLLinkedList<Block> {
      */
     private void merge(int loc1, int loc2) {
         get(loc1).setY(get(loc2).getY());
-        remove(get(loc2));
+        removeValue(get(loc2));
     }
 
     /**

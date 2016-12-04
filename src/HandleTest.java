@@ -10,6 +10,7 @@ import student.TestCase;
 public class HandleTest extends TestCase {
 
     private Handle myHandle;
+
     /**
      * Set up the tests that follow.
      */
@@ -36,15 +37,15 @@ public class HandleTest extends TestCase {
      * Test getVertex method
      */
     public void testGetVertex() {
-        assertEquals(-1,myHandle.getVertex());
+        assertEquals(-1, myHandle.getVertex());
     }
 
     /**
      * Test setVertex method
      */
     public void testSetVertex() {
-        assertEquals(-1,myHandle.getVertex());
+        assertEquals(-1, myHandle.getVertex());
         myHandle.setVertex(1);
-        assertEquals(1,myHandle.getVertex());
+        assertEquals(1, myHandle.getVertex());
     }
 }

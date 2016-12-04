@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 
 /**
  * This class represent a vertex in the graph
@@ -9,40 +8,22 @@ import java.util.LinkedList;
  */
 public class Vertex {
     private int value;
-    private LinkedList<Integer> neighboor;
-    private int parent;
-    private int size;
+    private DLLinkedList<Integer> neighboor;
 
     /**
      * constructor that creates a vertex with given value
-     * @param newValue of the new vertex
+     * 
+     * @param newValue
+     *            of the new vertex
      */
     public Vertex(int newValue) {
         value = newValue;
-        neighboor = new LinkedList<>();
-        parent = -1;
-        size = 0;
-    }
-
-
-    /**
-     * get the parent of the vertex
-     * @return parent of the node
-     */
-    public int getParent() {
-        return parent;
-    }
-
-    /**
-     * set parent of vertex
-     * @param parent new parent of vertex
-     */
-    public void setParent(int parent) {
-        this.parent = parent;
+        neighboor = new DLLinkedList<>();
     }
 
     /**
      * get the value of the vertex
+     * 
      * @return value of the vertex
      */
     public int getValue() {
@@ -51,7 +32,9 @@ public class Vertex {
 
     /**
      * set value of the vertex
-     * @param value vertex new value
+     * 
+     * @param value
+     *            vertex new value
      */
     public void setValue(int value) {
         this.value = value;
@@ -59,40 +42,21 @@ public class Vertex {
 
     /**
      * get neighboors of the vextex
+     * 
      * @return vertex neibhboors
      */
-    public LinkedList<Integer> getNeighboor() {
+    public DLLinkedList<Integer> getNeighboor() {
         return neighboor;
     }
 
-
     /**
      * set neighboor of the vertex
-     * @param neighboor vertex new neighboor
+     * 
+     * @param neighboor
+     *            vertex new neighboor
      */
-    public void setNeighboor(LinkedList<Integer> neighboor) {
+    public void setNeighboor(DLLinkedList<Integer> neighboor) {
         this.neighboor = neighboor;
     }
 
-    /**
-     * get the depth of the vertex
-     * @return vertex depth
-     */
-    public int getSize() {
-        return size;
-    }
-
-    /**
-     * increment depth of the vertex
-     */
-    public void incrementSize() {
-        size++;
-    }
-
-    /**
-     * decrement depth of the vertex
-     */
-    public void decrementSize() {
-        size--;
-    }
 }

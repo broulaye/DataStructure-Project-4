@@ -11,6 +11,9 @@ public class BufferBlock {
 
     /**
      * Default constructor
+     * 
+     * @param size
+     *            initial size of block
      */
     public BufferBlock(int size) {
         aBlock = new byte[size];
@@ -91,7 +94,12 @@ public class BufferBlock {
         this.isDirty = isDirty2;
     }
 
-    public String toString(){
+    /**
+     * get string representation of the block
+     * 
+     * @return string representation of the block
+     */
+    public String toString() {
         return new String(this.aBlock);
     }
 }

@@ -1,4 +1,3 @@
-import java.io.PrintWriter;
 
 /**
  * Hash table class.
@@ -14,6 +13,9 @@ public class Hash {
 
     // Array of strings
     private Handle[] valueArray;
+
+    // Array of Integer
+    private int[] integerArray;
 
     // number of elements in table
     private int numbElements;
@@ -45,6 +47,19 @@ public class Hash {
     }
 
     /**
+     * Creates a table to be used in the graph
+     * 
+     * @param initialSize
+     *            size of the table
+     */
+    public Hash(int initialSize) {
+        integerArray = new int[initialSize];
+        for (int i = 0; i < initialSize; i++) {
+            integerArray[i] = -1;
+        }
+    }
+
+    /**
      * Finds a string in the database
      *
      * @param str
@@ -57,12 +72,10 @@ public class Hash {
         int i = 0;
         do {
 
-            if (valueArray[pos] != null && !valueArray[pos].isTombStone()) {
-                String x  = handle2String(valueArray[pos]);
-                if(str.equalsIgnoreCase(handle2String(valueArray[pos]))) {
-                    return pos;
-                }
+            if (valueArray[pos] != null && !valueArray[pos].isTombStone()
+                    && str.equalsIgnoreCase(handle2String(valueArray[pos]))) {
 
+                return pos;
 
             }
             pos = (index + ++i * i) % valueArray.length;
@@ -73,7 +86,9 @@ public class Hash {
 
     /**
      * return the handle at the given position
-     * @param pos represent the position
+     * 
+     * @param pos
+     *            represent the position
      * @return a handle
      */
     public Handle getHandle(int pos) {
@@ -85,7 +100,9 @@ public class Hash {
 
     /**
      * returns the position of the handle for str
-     * @param str the string to get
+     * 
+     * @param str
+     *            the string to get
      * @return the position of that string
      */
     public int get(String str) {
@@ -107,20 +124,25 @@ public class Hash {
     /**
      * @param str
      *            (string to insert)
-     * @param writer
-     *            used to return status of operation
      * @return handle resulting from insertion
      */
-    public Handle insertString(String str, PrintWriter writer) {
+    public Handle insertString(String str) {
         int position = get(str);
         if (position != -1) {
-            writer.println("|" + str + "| duplicates a record already in the "
-                    + type + " database.");
+            System.out.println(
+                    "|" + str + "| duplicates a record already in the " + type
+                            + " database.");
             return valueArray[position];
         }
         if (numbElements + 1 > (valueArray.length >> 1)) {
             doubleSize();
-            writer.println(type + " hash table size doubled.");
+            if (type.equals("song")) {
+                System.out.println("Song hash table size doubled.");
+            }
+            else {
+                System.out.println("Artist hash table size doubled.");
+            }
+
         }
         int index = hash(str, valueArray.length);
         int pos = index;
@@ -133,10 +155,43 @@ public class Hash {
         }
         numbElements++;
         // store handle after storing string in memory pool
-        Handle aHandle = manager.insert(str, writer);
+        Handle aHandle = manager.insert(str);
         valueArray[pos] = aHandle;
-        writer.println("|" + str + "| is added to the " + type + " database.");
+        System.out.println(
+                "|" + str + "| is added to the " + type + " database.");
         return aHandle;
+    }
+
+    /**
+     * Insert an integer into the hash table
+     * 
+     * @param value
+     *            to be inserted
+     * @return true if the value was successfully inserted
+     */
+    public boolean insertInteger(int value) {
+        int home = hash2(value);
+        if (integerArray[home] == value) {
+            return false;
+        }
+        while (integerArray[home] != -1) {
+            home = (home + 1) % integerArray.length;
+            if (integerArray[home] == value) {
+                return false;
+            }
+        }
+        integerArray[home] = value;
+        return true;
+
+    }
+
+    /**
+     * get the hash table created from the graph
+     * 
+     * @return has table
+     */
+    public int[] getArray() {
+        return integerArray;
     }
 
     /**
@@ -204,6 +259,17 @@ public class Hash {
             mult *= 256;
         }
         return (int) (Math.abs(sum) % m);
+    }
+
+    /**
+     * Compute hash function is simple mod operation
+     * 
+     * @param num
+     *            value to hash
+     * @return home slot of the integer
+     */
+    private int hash2(int num) {
+        return num % integerArray.length;
     }
 
     /**

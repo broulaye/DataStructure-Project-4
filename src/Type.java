@@ -24,10 +24,10 @@ public enum Type {
         else if (this == Artist) {
             return "artist";
         }
-        else if(this == Block){
+        else if (this == Block) {
             return "blocks";
         }
-        else if(this == Graph) {
+        else if (this == Graph) {
             return "graph";
         }
         else {
