@@ -14,9 +14,6 @@ public class Hash {
     // Array of strings
     private Handle[] valueArray;
 
-    // Array of Integer
-    private int[] integerArray;
-
     // number of elements in table
     private int numbElements;
 
@@ -44,19 +41,6 @@ public class Hash {
         valueArray = new Handle[initialSize];
         numbElements = 0;
         manager = memManager;
-    }
-
-    /**
-     * Creates a table to be used in the graph
-     * 
-     * @param initialSize
-     *            size of the table
-     */
-    public Hash(int initialSize) {
-        integerArray = new int[initialSize];
-        for (int i = 0; i < initialSize; i++) {
-            integerArray[i] = -1;
-        }
     }
 
     /**
@@ -149,6 +133,7 @@ public class Hash {
         int i = 0;
         while (valueArray[pos] != null) {
             if (valueArray[pos].isTombStone()) {
+                valueArray[pos] = null;
                 break;
             }
             pos = (index + ++i * i) % valueArray.length;
@@ -160,38 +145,6 @@ public class Hash {
         System.out.println(
                 "|" + str + "| is added to the " + type + " database.");
         return aHandle;
-    }
-
-    /**
-     * Insert an integer into the hash table
-     * 
-     * @param value
-     *            to be inserted
-     * @return true if the value was successfully inserted
-     */
-    public boolean insertInteger(int value) {
-        int home = hash2(value);
-        if (integerArray[home] == value) {
-            return false;
-        }
-        while (integerArray[home] != -1) {
-            home = (home + 1) % integerArray.length;
-            if (integerArray[home] == value) {
-                return false;
-            }
-        }
-        integerArray[home] = value;
-        return true;
-
-    }
-
-    /**
-     * get the hash table created from the graph
-     * 
-     * @return has table
-     */
-    public int[] getArray() {
-        return integerArray;
     }
 
     /**
@@ -259,17 +212,6 @@ public class Hash {
             mult *= 256;
         }
         return (int) (Math.abs(sum) % m);
-    }
-
-    /**
-     * Compute hash function is simple mod operation
-     * 
-     * @param num
-     *            value to hash
-     * @return home slot of the integer
-     */
-    private int hash2(int num) {
-        return num % integerArray.length;
     }
 
     /**

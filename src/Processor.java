@@ -39,7 +39,7 @@ public class Processor {
         memoryManager = new MemManager(numBuff, blockSize, memFile);
         this.songHashTable = new Hash(hashSize, memoryManager, "song");
         this.artistHashTable = new Hash(hashSize, memoryManager, "artist");
-        graph = new Graph();
+        graph = new Graph(blockSize);
 
     }
 

@@ -340,22 +340,6 @@ public class BufferPool implements BufferPoolADT {
     }
 
     /**
-     * get the number of records in the file
-     *
-     * @return number of records
-     */
-    public int getNumRecord() {
-        int len = 0;
-        try {
-            len = (int) (file.length() / 4);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return len;
-    }
-
-    /**
      * convert a position to a block position
      *
      * @param pos

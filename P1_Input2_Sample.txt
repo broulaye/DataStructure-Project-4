@@ -1,0 +1,233 @@
+print blocks
+print song
+print artist
+print graph
+insert Another Bukka White<SEP>Bukka White's first song
+insert Bukka White<SEP>Bukka White's third song
+insert Another Bukka White<SEP>Bukka White's second song
+insert Bukka White<SEP>Bukka White's fourth song
+insert Another Bukka White<SEP>Bukka White's third song
+insert Johnny Winter<SEP>Bukka White's first song
+insert Another Johnny Winter<SEP>Johnny Winter's first song
+insert Johnny Winter<SEP>Johnny Winter's second song
+insert Johnny Winter<SEP>Johnny Winter's third song
+insert Another Johnny Winter<SEP>Johnny Winter's second song
+insert Johnny Winter<SEP>Johnny Winter's first song
+insert Another Johnny Winter<SEP>Johnny Winter's third song
+insert Another Johnny Winter<SEP>Johnny Winter's fourth song
+insert Another Johnny Winter<SEP>Johnny Winter's fifth song
+insert Bruce Rowland<SEP>Mountain Theme
+insert Thomas Dolby<SEP>She Blinded Me With Science
+insert Cheo Feliciano<SEP>Juguete
+insert Johnny Winter<SEP>Be Careful With A Fool
+insert Bruce Rowland<SEP>Mountain Theme
+insert Thomas Dolby<SEP>She Blinded Me With Science
+insert Cheo Feliciano<SEP>Juguete
+insert Johnny Winter<SEP>Be Careful With A Fool
+insert Kings Of Leon<SEP>Wicker Chair
+insert Happy Mondays<SEP>Wrote For Luck (12 - Remastered version)
+insert Rita Chiarelli<SEP>Doggin' Around
+insert Tim Wilson<SEP>I Think My Wife Is Running Around On Me (Taco Hell)
+insert Ennio Morricone<SEP>Sporco Ma Distinto
+insert Tiny Bradshaw<SEP>Well Oh Well
+insert Akon<SEP>Over The Edge
+insert Gerard Lenorman<SEP>Soldats Ne Tirez Pas
+insert All Time Low<SEP>Shameless
+insert Barenaked Ladies<SEP>This Is Where It Ends (Album Version)
+insert themselves<SEP>Oversleeping
+insert DJ Quik<SEP>Born and Raised In Compton
+insert Carl Smith<SEP>Hey Joe
+insert Jesus Jones<SEP>All The Answers
+insert Audio Adrenaline<SEP>My God (Audio Adrenaline Album Version)
+insert Chris Clark<SEP>If You Should Walk Away
+insert Loop Guru<SEP>The Mystery Epoch
+insert Chelsea<SEP>Decide
+insert Mr. Lif<SEP>For You
+insert Aeoliah<SEP>For Your Passion My Love
+insert Kyle Riabko<SEP>Doesn't Get Much Better
+insert Gary Moore<SEP>What Are We Here For
+insert Faithless<SEP>Six
+insert 8Ball & MJG<SEP>Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)
+insert No Address<SEP>Pretty Girl (Amended Version)
+insert Green Day<SEP>Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)
+insert Dream Warriors<SEP>Sound Clash (featuring Beenie Man) - FattaSly Extended Mix
+insert Charlie Peacock<SEP>Down in the Lowlands
+insert Paula Santoro<SEP>The Girl From Ipanema (Garota De Ipanema)
+insert Sylver<SEP>Sympathy
+insert Funeral For A Friend<SEP>Your Revolution Is A Joke
+insert Dons<SEP>American Lovebite
+print blocks
+print song
+print artist
+print graph
+remove artist Another Bukka White
+remove song Bukka White's first song
+remove artist Bukka White
+remove song Bukka White's third song
+remove artist Another Bukka White
+remove song Bukka White's second song
+remove artist Bukka White
+remove song Bukka White's fourth song
+remove artist Another Bukka White
+remove song Bukka White's third song
+remove artist Johnny Winter
+remove song Bukka White's first song
+remove artist Another Johnny Winter
+remove song Johnny Winter's first song
+remove artist Johnny Winter
+remove song Johnny Winter's second song
+remove artist Johnny Winter
+remove song Johnny Winter's third song
+remove artist Another Johnny Winter
+remove song Johnny Winter's second song
+remove artist Johnny Winter
+remove song Johnny Winter's first song
+remove artist Another Johnny Winter
+remove song Johnny Winter's third song
+remove artist Another Johnny Winter
+remove song Johnny Winter's fourth song
+remove artist Another Johnny Winter
+remove song Johnny Winter's fifth song
+remove artist Bukka White
+remove artist Bruce Rowland
+remove song Mountain Theme
+remove artist Thomas Dolby
+remove song She Blinded Me With Science
+remove artist Cheo Feliciano 
+remove song Juguete
+remove artist Johnny Winter
+remove song Be Careful With A Fool
+remove artist Bruce Rowland
+remove song Mountain Theme
+remove artist Thomas Dolby
+remove song She Blinded Me With Science
+remove artist Cheo Feliciano
+remove song Juguete
+remove artist Johnny Winter
+remove song Be Careful With A Fool
+remove artist Kings Of Leon
+remove song Wicker Chair
+remove artist Happy Mondays
+remove song Wrote For Luck (12 - Remastered version)
+remove artist Rita Chiarelli
+remove song Doggin' Around
+remove artist Tim Wilson
+remove song I Think My Wife Is Running Around On Me (Taco Hell)
+remove artist Ennio Morricone
+remove song Sporco Ma Distinto
+remove artist Tiny Bradshaw
+remove song Well Oh Well
+remove artist Akon
+remove song Over The Edge
+remove artist Gerard Lenorman
+remove song Soldats Ne Tirez Pas
+remove artist All Time Low
+remove song Shameless
+remove artist Barenaked Ladies
+remove song This Is Where It Ends (Album Version)
+remove artist themselves
+remove song Oversleeping
+remove artist DJ Quik
+remove song Born and Raised In Compton
+remove artist Carl Smith
+remove song Hey Joe
+remove artist Jesus Jones
+remove song All The Answers
+remove artist Audio Adrenaline
+remove song My God (Audio Adrenaline Album Version)
+remove artist Chris Clark
+remove song If You Should Walk Away
+remove artist Loop Guru
+remove song The Mystery Epoch
+remove artist Chelsea
+remove song Decide
+remove artist Mr. Lif
+remove song For You
+remove artist Aeoliah
+remove song For Your Passion My Love
+remove artist Kyle Riabko
+remove song Doesn't Get Much Better
+remove artist Gary Moore
+remove song What Are We Here For
+remove artist Faithless
+remove song Six
+remove artist 8Ball & MJG
+remove song Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)
+remove artist No Address
+remove song Pretty Girl (Amended Version)
+remove artist Green Day
+remove song Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)
+remove artist Dream Warriors
+remove song Sound Clash (featuring Beenie Man) - FattaSly Extended Mix
+remove artist Charlie Peacock
+remove song Down in the Lowlands
+remove artist Paula Santoro
+remove song The Girl From Ipanema (Garota De Ipanema)
+remove artist Sylver
+remove song Sympathy
+remove artist Funeral For A Friend
+remove song Your Revolution Is A Joke
+remove artist Dons
+remove song American Lovebite
+print blocks
+print song
+print artist
+print graph
+insert Another Bukka White<SEP>Bukka White's first song
+insert Bukka White<SEP>Bukka White's third song
+insert Another Bukka White<SEP>Bukka White's second song
+insert Bukka White<SEP>Bukka White's fourth song
+insert Another Bukka White<SEP>Bukka White's third song
+insert Johnny Winter<SEP>Bukka White's first song
+insert Another Johnny Winter<SEP>Johnny Winter's first song
+insert Johnny Winter<SEP>Johnny Winter's second song
+insert Johnny Winter<SEP>Johnny Winter's third song
+insert Another Johnny Winter<SEP>Johnny Winter's second song
+insert Johnny Winter<SEP>Johnny Winter's first song
+insert Another Johnny Winter<SEP>Johnny Winter's third song
+insert Another Johnny Winter<SEP>Johnny Winter's fourth song
+insert Another Johnny Winter<SEP>Johnny Winter's fifth song
+insert Bruce Rowland<SEP>Mountain Theme
+insert Thomas Dolby<SEP>She Blinded Me With Science
+insert Cheo Feliciano<SEP>Juguete
+insert Johnny Winter<SEP>Be Careful With A Fool
+insert Bruce Rowland<SEP>Mountain Theme
+insert Thomas Dolby<SEP>She Blinded Me With Science
+insert Cheo Feliciano<SEP>Juguete
+insert Johnny Winter<SEP>Be Careful With A Fool
+insert Kings Of Leon<SEP>Wicker Chair
+insert Happy Mondays<SEP>Wrote For Luck (12 - Remastered version)
+insert Rita Chiarelli<SEP>Doggin' Around
+insert Tim Wilson<SEP>I Think My Wife Is Running Around On Me (Taco Hell)
+insert Ennio Morricone<SEP>Sporco Ma Distinto
+insert Tiny Bradshaw<SEP>Well Oh Well
+insert Akon<SEP>Over The Edge
+insert Gerard Lenorman<SEP>Soldats Ne Tirez Pas
+insert All Time Low<SEP>Shameless
+insert Barenaked Ladies<SEP>This Is Where It Ends (Album Version)
+insert themselves<SEP>Oversleeping
+insert DJ Quik<SEP>Born and Raised In Compton
+insert Carl Smith<SEP>Hey Joe
+insert Jesus Jones<SEP>All The Answers
+insert Audio Adrenaline<SEP>My God (Audio Adrenaline Album Version)
+insert Chris Clark<SEP>If You Should Walk Away
+insert Loop Guru<SEP>The Mystery Epoch
+insert Chelsea<SEP>Decide
+insert Mr. Lif<SEP>For You
+insert Aeoliah<SEP>For Your Passion My Love
+insert Kyle Riabko<SEP>Doesn't Get Much Better
+insert Gary Moore<SEP>What Are We Here For
+insert Faithless<SEP>Six
+insert 8Ball & MJG<SEP>Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)
+insert No Address<SEP>Pretty Girl (Amended Version)
+insert Green Day<SEP>Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)
+insert Dream Warriors<SEP>Sound Clash (featuring Beenie Man) - FattaSly Extended Mix
+insert Charlie Peacock<SEP>Down in the Lowlands
+insert Paula Santoro<SEP>The Girl From Ipanema (Garota De Ipanema)
+insert Sylver<SEP>Sympathy
+insert Funeral For A Friend<SEP>Your Revolution Is A Joke
+insert Dons<SEP>American Lovebite
+print blocks
+print song
+print artist
+print graph

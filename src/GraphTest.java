@@ -15,7 +15,7 @@ public class GraphTest extends TestCase {
      * Set up our variable
      */
     public void setUp() {
-        graph = new Graph();
+        graph = new Graph(10);
         handle = new Handle(1);
     }
 

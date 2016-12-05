@@ -343,14 +343,12 @@ public class DLLinkedList<T> {
      */
     public class DLListIterator<A> implements Iterator<T> {
 
-        private Boolean nextCalled;
         private Node<T> node;
 
         /**
          * Creates a new DLListIterator
          */
         public DLListIterator() {
-            nextCalled = false;
             node = head;
         }
 
@@ -375,7 +373,6 @@ public class DLLinkedList<T> {
         public T next() {
             if (hasNext()) {
                 node = node.next();
-                nextCalled = true;
                 return node.getData();
             }
             else {

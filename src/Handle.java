@@ -19,7 +19,6 @@ public class Handle {
     /**
      * defines the state of handle in hash table
      */
-
     private boolean tombstone;
 
     // ----------------------------------------------------------
@@ -32,7 +31,9 @@ public class Handle {
     public Handle(int p) {
         thePos = p;
         vertex = -1;
+        tombstone = false;
     }
+    
 
     // ----------------------------------------------------------
     /**

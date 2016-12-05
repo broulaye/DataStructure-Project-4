@@ -1,0 +1,577 @@
+(0,32)
+total songs: 0
+total artists: 0
+There are 0 connected components
+The largest connected component has 0 elements
+The diameter of the largest component is 0
+|Another Bukka White| is added to the artist database.
+Memory pool expanded to be 64 bytes.
+|Bukka White's first song| is added to the song database.
+|Bukka White| is added to the artist database.
+Memory pool expanded to be 96 bytes.
+|Bukka White's third song| is added to the song database.
+|Another Bukka White| duplicates a record already in the artist database.
+Memory pool expanded to be 128 bytes.
+|Bukka White's second song| is added to the song database.
+|Bukka White| duplicates a record already in the artist database.
+Memory pool expanded to be 160 bytes.
+|Bukka White's fourth song| is added to the song database.
+|Another Bukka White| duplicates a record already in the artist database.
+|Bukka White's third song| duplicates a record already in the song database.
+|Johnny Winter| is added to the artist database.
+|Bukka White's first song| duplicates a record already in the song database.
+Memory pool expanded to be 192 bytes.
+|Another Johnny Winter| is added to the artist database.
+Memory pool expanded to be 224 bytes.
+|Johnny Winter's first song| is added to the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+Song hash table size doubled.
+Memory pool expanded to be 256 bytes.
+|Johnny Winter's second song| is added to the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+Memory pool expanded to be 288 bytes.
+|Johnny Winter's third song| is added to the song database.
+|Another Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's second song| duplicates a record already in the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's first song| duplicates a record already in the song database.
+|Another Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's third song| duplicates a record already in the song database.
+|Another Johnny Winter| duplicates a record already in the artist database.
+Memory pool expanded to be 320 bytes.
+|Johnny Winter's fourth song| is added to the song database.
+|Another Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's fifth song| is added to the song database.
+Memory pool expanded to be 352 bytes.
+|Bruce Rowland| is added to the artist database.
+|Mountain Theme| is added to the song database.
+Artist hash table size doubled.
+Memory pool expanded to be 384 bytes.
+|Thomas Dolby| is added to the artist database.
+Song hash table size doubled.
+Memory pool expanded to be 416 bytes.
+|She Blinded Me With Science| is added to the song database.
+|Cheo Feliciano| is added to the artist database.
+Memory pool expanded to be 448 bytes.
+|Juguete| is added to the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+|Be Careful With A Fool| is added to the song database.
+|Bruce Rowland| duplicates a record already in the artist database.
+|Mountain Theme| duplicates a record already in the song database.
+|Thomas Dolby| duplicates a record already in the artist database.
+|She Blinded Me With Science| duplicates a record already in the song database.
+|Cheo Feliciano| duplicates a record already in the artist database.
+|Juguete| duplicates a record already in the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+|Be Careful With A Fool| duplicates a record already in the song database.
+Memory pool expanded to be 480 bytes.
+|Kings Of Leon| is added to the artist database.
+|Wicker Chair| is added to the song database.
+Memory pool expanded to be 512 bytes.
+|Happy Mondays| is added to the artist database.
+Memory pool expanded to be 544 bytes.
+|Wrote For Luck (12 - Remastered version)| is added to the song database.
+Memory pool expanded to be 576 bytes.
+|Rita Chiarelli| is added to the artist database.
+|Doggin' Around| is added to the song database.
+Artist hash table size doubled.
+|Tim Wilson| is added to the artist database.
+Memory pool expanded to be 608 bytes.
+Memory pool expanded to be 640 bytes.
+|I Think My Wife Is Running Around On Me (Taco Hell)| is added to the song database.
+Memory pool expanded to be 672 bytes.
+|Ennio Morricone| is added to the artist database.
+|Sporco Ma Distinto| is added to the song database.
+Memory pool expanded to be 704 bytes.
+|Tiny Bradshaw| is added to the artist database.
+|Well Oh Well| is added to the song database.
+|Akon| is added to the artist database.
+Memory pool expanded to be 736 bytes.
+|Over The Edge| is added to the song database.
+|Gerard Lenorman| is added to the artist database.
+Song hash table size doubled.
+Memory pool expanded to be 768 bytes.
+|Soldats Ne Tirez Pas| is added to the song database.
+|All Time Low| is added to the artist database.
+Memory pool expanded to be 800 bytes.
+|Shameless| is added to the song database.
+|Barenaked Ladies| is added to the artist database.
+Memory pool expanded to be 832 bytes.
+Memory pool expanded to be 864 bytes.
+|This Is Where It Ends (Album Version)| is added to the song database.
+|themselves| is added to the artist database.
+|Oversleeping| is added to the song database.
+Memory pool expanded to be 896 bytes.
+|DJ Quik| is added to the artist database.
+Memory pool expanded to be 928 bytes.
+|Born and Raised In Compton| is added to the song database.
+|Carl Smith| is added to the artist database.
+|Hey Joe| is added to the song database.
+Artist hash table size doubled.
+Memory pool expanded to be 960 bytes.
+|Jesus Jones| is added to the artist database.
+|All The Answers| is added to the song database.
+Memory pool expanded to be 992 bytes.
+|Audio Adrenaline| is added to the artist database.
+Memory pool expanded to be 1024 bytes.
+|My God (Audio Adrenaline Album Version)| is added to the song database.
+|Chris Clark| is added to the artist database.
+Memory pool expanded to be 1056 bytes.
+|If You Should Walk Away| is added to the song database.
+|Loop Guru| is added to the artist database.
+Memory pool expanded to be 1088 bytes.
+|The Mystery Epoch| is added to the song database.
+|Chelsea| is added to the artist database.
+Memory pool expanded to be 1120 bytes.
+|Decide| is added to the song database.
+|Mr. Lif| is added to the artist database.
+|For You| is added to the song database.
+|Aeoliah| is added to the artist database.
+Memory pool expanded to be 1152 bytes.
+|For Your Passion My Love| is added to the song database.
+Memory pool expanded to be 1184 bytes.
+|Kyle Riabko| is added to the artist database.
+|Doesn't Get Much Better| is added to the song database.
+Memory pool expanded to be 1216 bytes.
+|Gary Moore| is added to the artist database.
+Memory pool expanded to be 1248 bytes.
+|What Are We Here For| is added to the song database.
+|Faithless| is added to the artist database.
+|Six| is added to the song database.
+|8Ball & MJG| is added to the artist database.
+Memory pool expanded to be 1280 bytes.
+Memory pool expanded to be 1312 bytes.
+Memory pool expanded to be 1344 bytes.
+|Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)| is added to the song database.
+Memory pool expanded to be 1376 bytes.
+|No Address| is added to the artist database.
+|Pretty Girl (Amended Version)| is added to the song database.
+Memory pool expanded to be 1408 bytes.
+|Green Day| is added to the artist database.
+Memory pool expanded to be 1440 bytes.
+Memory pool expanded to be 1472 bytes.
+|Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)| is added to the song database.
+|Dream Warriors| is added to the artist database.
+Memory pool expanded to be 1504 bytes.
+Memory pool expanded to be 1536 bytes.
+|Sound Clash (featuring Beenie Man) - FattaSly Extended Mix| is added to the song database.
+Memory pool expanded to be 1568 bytes.
+|Charlie Peacock| is added to the artist database.
+Song hash table size doubled.
+|Down in the Lowlands| is added to the song database.
+Memory pool expanded to be 1600 bytes.
+|Paula Santoro| is added to the artist database.
+Memory pool expanded to be 1632 bytes.
+|The Girl From Ipanema (Garota De Ipanema)| is added to the song database.
+|Sylver| is added to the artist database.
+Memory pool expanded to be 1664 bytes.
+|Sympathy| is added to the song database.
+|Funeral For A Friend| is added to the artist database.
+Memory pool expanded to be 1696 bytes.
+|Your Revolution Is A Joke| is added to the song database.
+|Dons| is added to the artist database.
+Memory pool expanded to be 1728 bytes.
+|American Lovebite| is added to the song database.
+(1713,15)
+|Your Revolution Is A Joke| 0
+|Johnny Winter's second song| 3
+|Sound Clash (featuring Beenie Man) - FattaSly Extended Mix| 9
+|Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)| 12
+|Mountain Theme| 14
+|My God (Audio Adrenaline Album Version)| 19
+|Wrote For Luck (12 - Remastered version)| 20
+|Doggin' Around| 28
+|Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)| 29
+|Pretty Girl (Amended Version)| 31
+|If You Should Walk Away| 39
+|Soldats Ne Tirez Pas| 43
+|Shameless| 44
+|This Is Where It Ends (Album Version)| 47
+|Johnny Winter's first song| 59
+|Born and Raised In Compton| 60
+|What Are We Here For| 63
+|The Girl From Ipanema (Garota De Ipanema)| 67
+|Bukka White's first song| 68
+|Juguete| 79
+|Oversleeping| 82
+|Hey Joe| 83
+|The Mystery Epoch| 84
+|Six| 87
+|Doesn't Get Much Better| 90
+|Sporco Ma Distinto| 94
+|Down in the Lowlands| 101
+|Decide| 104
+|Well Oh Well| 110
+|Johnny Winter's fifth song| 111
+|Be Careful With A Fool| 113
+|Johnny Winter's third song| 121
+|All The Answers| 123
+|For Your Passion My Love| 126
+|Wicker Chair| 132
+|Bukka White's second song| 137
+|I Think My Wife Is Running Around On Me (Taco Hell)| 141
+|She Blinded Me With Science| 144
+|Over The Edge| 148
+|Sympathy| 149
+|American Lovebite| 152
+|Bukka White's fourth song| 155
+|Bukka White's third song| 156
+|Johnny Winter's fourth song| 157
+|For You| 159
+total songs: 45
+|Loop Guru| 1
+|Happy Mondays| 2
+|Dons| 4
+|All Time Low| 5
+|Funeral For A Friend| 8
+|DJ Quik| 9
+|Gary Moore| 10
+|Faithless| 17
+|No Address| 21
+|Barenaked Ladies| 24
+|Cheo Feliciano| 26
+|Gerard Lenorman| 27
+|Another Johnny Winter| 28
+|themselves| 29
+|Tim Wilson| 30
+|Rita Chiarelli| 31
+|Akon| 33
+|Green Day| 34
+|Johnny Winter| 35
+|Another Bukka White| 37
+|Chelsea| 38
+|Sylver| 40
+|Aeoliah| 42
+|Bukka White| 44
+|Audio Adrenaline| 46
+|8Ball & MJG| 49
+|Dream Warriors| 53
+|Carl Smith| 55
+|Chris Clark| 56
+|Mr. Lif| 57
+|Charlie Peacock| 62
+|Bruce Rowland| 66
+|Thomas Dolby| 68
+|Ennio Morricone| 69
+|Jesus Jones| 75
+|Kings Of Leon| 76
+|Kyle Riabko| 77
+|Paula Santoro| 78
+|Tiny Bradshaw| 79
+total artists: 39
+There are 36 connected components
+The largest connected component has 14 elements
+The diameter of the largest component is 8
+|Another Bukka White| is removed from the artist database.
+|Bukka White's first song| is removed from the song database.
+|Bukka White| is removed from the artist database.
+|Bukka White's third song| is removed from the song database.
+|Another Bukka White| does not exist in the artist database.
+|Bukka White's second song| is removed from the song database.
+|Bukka White| does not exist in the artist database.
+|Bukka White's fourth song| is removed from the song database.
+|Another Bukka White| does not exist in the artist database.
+|Bukka White's third song| does not exist in the song database.
+|Johnny Winter| is removed from the artist database.
+|Bukka White's first song| does not exist in the song database.
+|Another Johnny Winter| is removed from the artist database.
+|Johnny Winter's first song| is removed from the song database.
+|Johnny Winter| does not exist in the artist database.
+|Johnny Winter's second song| is removed from the song database.
+|Johnny Winter| does not exist in the artist database.
+|Johnny Winter's third song| is removed from the song database.
+|Another Johnny Winter| does not exist in the artist database.
+|Johnny Winter's second song| does not exist in the song database.
+|Johnny Winter| does not exist in the artist database.
+|Johnny Winter's first song| does not exist in the song database.
+|Another Johnny Winter| does not exist in the artist database.
+|Johnny Winter's third song| does not exist in the song database.
+|Another Johnny Winter| does not exist in the artist database.
+|Johnny Winter's fourth song| is removed from the song database.
+|Another Johnny Winter| does not exist in the artist database.
+|Johnny Winter's fifth song| is removed from the song database.
+|Bukka White| does not exist in the artist database.
+|Bruce Rowland| is removed from the artist database.
+|Mountain Theme| is removed from the song database.
+|Thomas Dolby| is removed from the artist database.
+|She Blinded Me With Science| is removed from the song database.
+|Cheo Feliciano| is removed from the artist database.
+|Juguete| is removed from the song database.
+|Johnny Winter| does not exist in the artist database.
+|Be Careful With A Fool| is removed from the song database.
+|Bruce Rowland| does not exist in the artist database.
+|Mountain Theme| does not exist in the song database.
+|Thomas Dolby| does not exist in the artist database.
+|She Blinded Me With Science| does not exist in the song database.
+|Cheo Feliciano| does not exist in the artist database.
+|Juguete| does not exist in the song database.
+|Johnny Winter| does not exist in the artist database.
+|Be Careful With A Fool| does not exist in the song database.
+|Kings Of Leon| is removed from the artist database.
+|Wicker Chair| is removed from the song database.
+|Happy Mondays| is removed from the artist database.
+|Wrote For Luck (12 - Remastered version)| is removed from the song database.
+|Rita Chiarelli| is removed from the artist database.
+|Doggin' Around| is removed from the song database.
+|Tim Wilson| is removed from the artist database.
+|I Think My Wife Is Running Around On Me (Taco Hell)| is removed from the song database.
+|Ennio Morricone| is removed from the artist database.
+|Sporco Ma Distinto| is removed from the song database.
+|Tiny Bradshaw| is removed from the artist database.
+|Well Oh Well| is removed from the song database.
+|Akon| is removed from the artist database.
+|Over The Edge| is removed from the song database.
+|Gerard Lenorman| is removed from the artist database.
+|Soldats Ne Tirez Pas| is removed from the song database.
+|All Time Low| is removed from the artist database.
+|Shameless| is removed from the song database.
+|Barenaked Ladies| is removed from the artist database.
+|This Is Where It Ends (Album Version)| is removed from the song database.
+|themselves| is removed from the artist database.
+|Oversleeping| is removed from the song database.
+|DJ Quik| is removed from the artist database.
+|Born and Raised In Compton| is removed from the song database.
+|Carl Smith| is removed from the artist database.
+|Hey Joe| is removed from the song database.
+|Jesus Jones| is removed from the artist database.
+|All The Answers| is removed from the song database.
+|Audio Adrenaline| is removed from the artist database.
+|My God (Audio Adrenaline Album Version)| is removed from the song database.
+|Chris Clark| is removed from the artist database.
+|If You Should Walk Away| is removed from the song database.
+|Loop Guru| is removed from the artist database.
+|The Mystery Epoch| is removed from the song database.
+|Chelsea| is removed from the artist database.
+|Decide| is removed from the song database.
+|Mr. Lif| is removed from the artist database.
+|For You| is removed from the song database.
+|Aeoliah| is removed from the artist database.
+|For Your Passion My Love| is removed from the song database.
+|Kyle Riabko| is removed from the artist database.
+|Doesn't Get Much Better| is removed from the song database.
+|Gary Moore| is removed from the artist database.
+|What Are We Here For| is removed from the song database.
+|Faithless| is removed from the artist database.
+|Six| is removed from the song database.
+|8Ball & MJG| is removed from the artist database.
+|Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)| is removed from the song database.
+|No Address| is removed from the artist database.
+|Pretty Girl (Amended Version)| is removed from the song database.
+|Green Day| is removed from the artist database.
+|Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)| is removed from the song database.
+|Dream Warriors| is removed from the artist database.
+|Sound Clash (featuring Beenie Man) - FattaSly Extended Mix| is removed from the song database.
+|Charlie Peacock| is removed from the artist database.
+|Down in the Lowlands| is removed from the song database.
+|Paula Santoro| is removed from the artist database.
+|The Girl From Ipanema (Garota De Ipanema)| is removed from the song database.
+|Sylver| is removed from the artist database.
+|Sympathy| is removed from the song database.
+|Funeral For A Friend| is removed from the artist database.
+|Your Revolution Is A Joke| is removed from the song database.
+|Dons| is removed from the artist database.
+|American Lovebite| is removed from the song database.
+(0,1728)
+total songs: 0
+total artists: 0
+There are 0 connected components
+The largest connected component has 0 elements
+The diameter of the largest component is 8
+|Another Bukka White| is added to the artist database.
+|Bukka White's first song| is added to the song database.
+|Bukka White| is added to the artist database.
+|Bukka White's third song| is added to the song database.
+|Another Bukka White| duplicates a record already in the artist database.
+|Bukka White's second song| is added to the song database.
+|Bukka White| duplicates a record already in the artist database.
+|Bukka White's fourth song| is added to the song database.
+|Another Bukka White| duplicates a record already in the artist database.
+|Bukka White's third song| duplicates a record already in the song database.
+|Johnny Winter| is added to the artist database.
+|Bukka White's first song| duplicates a record already in the song database.
+|Another Johnny Winter| is added to the artist database.
+|Johnny Winter's first song| is added to the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's second song| is added to the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's third song| is added to the song database.
+|Another Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's second song| duplicates a record already in the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's first song| duplicates a record already in the song database.
+|Another Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's third song| duplicates a record already in the song database.
+|Another Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's fourth song| is added to the song database.
+|Another Johnny Winter| duplicates a record already in the artist database.
+|Johnny Winter's fifth song| is added to the song database.
+|Bruce Rowland| is added to the artist database.
+|Mountain Theme| is added to the song database.
+|Thomas Dolby| is added to the artist database.
+|She Blinded Me With Science| is added to the song database.
+|Cheo Feliciano| is added to the artist database.
+|Juguete| is added to the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+|Be Careful With A Fool| is added to the song database.
+|Bruce Rowland| duplicates a record already in the artist database.
+|Mountain Theme| duplicates a record already in the song database.
+|Thomas Dolby| duplicates a record already in the artist database.
+|She Blinded Me With Science| duplicates a record already in the song database.
+|Cheo Feliciano| duplicates a record already in the artist database.
+|Juguete| duplicates a record already in the song database.
+|Johnny Winter| duplicates a record already in the artist database.
+|Be Careful With A Fool| duplicates a record already in the song database.
+|Kings Of Leon| is added to the artist database.
+|Wicker Chair| is added to the song database.
+|Happy Mondays| is added to the artist database.
+|Wrote For Luck (12 - Remastered version)| is added to the song database.
+|Rita Chiarelli| is added to the artist database.
+|Doggin' Around| is added to the song database.
+|Tim Wilson| is added to the artist database.
+|I Think My Wife Is Running Around On Me (Taco Hell)| is added to the song database.
+|Ennio Morricone| is added to the artist database.
+|Sporco Ma Distinto| is added to the song database.
+|Tiny Bradshaw| is added to the artist database.
+|Well Oh Well| is added to the song database.
+|Akon| is added to the artist database.
+|Over The Edge| is added to the song database.
+|Gerard Lenorman| is added to the artist database.
+|Soldats Ne Tirez Pas| is added to the song database.
+|All Time Low| is added to the artist database.
+|Shameless| is added to the song database.
+|Barenaked Ladies| is added to the artist database.
+|This Is Where It Ends (Album Version)| is added to the song database.
+|themselves| is added to the artist database.
+|Oversleeping| is added to the song database.
+|DJ Quik| is added to the artist database.
+|Born and Raised In Compton| is added to the song database.
+|Carl Smith| is added to the artist database.
+|Hey Joe| is added to the song database.
+|Jesus Jones| is added to the artist database.
+|All The Answers| is added to the song database.
+|Audio Adrenaline| is added to the artist database.
+|My God (Audio Adrenaline Album Version)| is added to the song database.
+|Chris Clark| is added to the artist database.
+|If You Should Walk Away| is added to the song database.
+|Loop Guru| is added to the artist database.
+|The Mystery Epoch| is added to the song database.
+|Chelsea| is added to the artist database.
+|Decide| is added to the song database.
+|Mr. Lif| is added to the artist database.
+|For You| is added to the song database.
+|Aeoliah| is added to the artist database.
+|For Your Passion My Love| is added to the song database.
+|Kyle Riabko| is added to the artist database.
+|Doesn't Get Much Better| is added to the song database.
+|Gary Moore| is added to the artist database.
+|What Are We Here For| is added to the song database.
+|Faithless| is added to the artist database.
+|Six| is added to the song database.
+|8Ball & MJG| is added to the artist database.
+|Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)| is added to the song database.
+|No Address| is added to the artist database.
+|Pretty Girl (Amended Version)| is added to the song database.
+|Green Day| is added to the artist database.
+|Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)| is added to the song database.
+|Dream Warriors| is added to the artist database.
+|Sound Clash (featuring Beenie Man) - FattaSly Extended Mix| is added to the song database.
+|Charlie Peacock| is added to the artist database.
+|Down in the Lowlands| is added to the song database.
+|Paula Santoro| is added to the artist database.
+|The Girl From Ipanema (Garota De Ipanema)| is added to the song database.
+|Sylver| is added to the artist database.
+|Sympathy| is added to the song database.
+|Funeral For A Friend| is added to the artist database.
+|Your Revolution Is A Joke| is added to the song database.
+|Dons| is added to the artist database.
+|American Lovebite| is added to the song database.
+(1713,15)
+|Your Revolution Is A Joke| 0
+|Johnny Winter's second song| 3
+|Sound Clash (featuring Beenie Man) - FattaSly Extended Mix| 9
+|Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)| 12
+|Mountain Theme| 14
+|My God (Audio Adrenaline Album Version)| 19
+|Wrote For Luck (12 - Remastered version)| 20
+|Doggin' Around| 28
+|Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)| 29
+|Pretty Girl (Amended Version)| 31
+|If You Should Walk Away| 39
+|Soldats Ne Tirez Pas| 43
+|Shameless| 44
+|This Is Where It Ends (Album Version)| 47
+|Johnny Winter's first song| 59
+|Born and Raised In Compton| 60
+|What Are We Here For| 63
+|The Girl From Ipanema (Garota De Ipanema)| 67
+|Bukka White's first song| 68
+|Juguete| 79
+|Oversleeping| 82
+|Hey Joe| 83
+|The Mystery Epoch| 84
+|Six| 87
+|Doesn't Get Much Better| 90
+|Sporco Ma Distinto| 94
+|Down in the Lowlands| 101
+|Decide| 104
+|Well Oh Well| 110
+|Johnny Winter's fifth song| 111
+|Be Careful With A Fool| 113
+|Johnny Winter's third song| 121
+|All The Answers| 123
+|For Your Passion My Love| 126
+|Wicker Chair| 132
+|Bukka White's second song| 137
+|I Think My Wife Is Running Around On Me (Taco Hell)| 141
+|She Blinded Me With Science| 144
+|Over The Edge| 148
+|Sympathy| 149
+|American Lovebite| 152
+|Bukka White's third song| 155
+|Bukka White's fourth song| 156
+|Johnny Winter's fourth song| 157
+|For You| 159
+total songs: 45
+|Loop Guru| 1
+|Happy Mondays| 2
+|Dons| 4
+|All Time Low| 5
+|Funeral For A Friend| 8
+|DJ Quik| 9
+|Gary Moore| 10
+|Faithless| 17
+|No Address| 21
+|Barenaked Ladies| 24
+|Cheo Feliciano| 26
+|Tim Wilson| 27
+|Another Johnny Winter| 28
+|themselves| 29
+|Aeoliah| 30
+|Rita Chiarelli| 31
+|Akon| 33
+|Green Day| 34
+|Johnny Winter| 35
+|Gerard Lenorman| 36
+|Another Bukka White| 37
+|Chelsea| 38
+|Sylver| 40
+|Bukka White| 44
+|Audio Adrenaline| 46
+|8Ball & MJG| 49
+|Dream Warriors| 53
+|Carl Smith| 55
+|Chris Clark| 56
+|Mr. Lif| 57
+|Charlie Peacock| 62
+|Bruce Rowland| 66
+|Thomas Dolby| 68
+|Ennio Morricone| 69
+|Jesus Jones| 75
+|Kings Of Leon| 76
+|Kyle Riabko| 77
+|Paula Santoro| 78
+|Tiny Bradshaw| 79
+total artists: 39
+There are 36 connected components
+The largest connected component has 14 elements
+The diameter of the largest component is 8

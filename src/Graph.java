@@ -17,14 +17,17 @@ public class Graph {
     private int diameter;
     private int[] unionArray;
     private int[] unionWeight;
+    private int[] values;
     private int currentPosition;
-    private Hash tree;
+    private int expandBy;
 
     /**
      * Default constructor that initialized the variables
+     * @param size initial size of graph
      */
-    public Graph() {
-        graphArray = new Vertex[10];
+    public Graph(int size) {
+        graphArray = new Vertex[size];
+        expandBy = size;
         numOfNode = 0;
         connectedComponents = 0;
         largestSize = 0;
@@ -89,7 +92,7 @@ public class Graph {
      * this method double the size of the graphArray
      */
     private void expandGraph() {
-        int newLenght = graphArray.length * 2;
+        int newLenght = graphArray.length + expandBy;
         Vertex[] newGraph = new Vertex[newLenght];
         for (int i = 0; i < graphArray.length; i++) {
             newGraph[i] = graphArray[i];
@@ -134,30 +137,21 @@ public class Graph {
         if (largestSize == 0) {
             return;
         }
-        tree = new Hash(largestSize);
-        compute(tree, largestIndex);
+        values = new int[largestSize];
+        values[0] = largestIndex;
+        int k = 0;
+        for(int i = 1; i < largestSize; i++) {
+            if(unionArray[k] != largestIndex) {
+                k++;
+                i--;
+                continue;
+            }
+            values[i] = k;
+            k++;
+        }
 
     }
 
-    /**
-     * Helper method to compute the tree
-     * 
-     * @param theTree
-     *            will contain the tree
-     * @param value
-     *            to be inserted in the tree
-     */
-    private void compute(Hash theTree, int value) {
-        if (!theTree.insertInteger(value)) {
-            return;
-        }
-        DLLinkedList<Integer> neighboor = graphArray[value].getNeighboor();
-        Iterator<Integer> iterator = neighboor.iterator();
-        while (iterator.hasNext()) {
-            int index = iterator.next();
-            compute(theTree, index);
-        }
-    }
 
     /**
      * get the vertex at the given index
@@ -237,12 +231,11 @@ public class Graph {
      * Compute Floyd's algorithm
      */
     private void computeFloyd() {
+        diameter = 0;
         if (largestSize == 0) {
             return;
         }
-        diameter = 0;
         int[][] distanceMatrix = new int[largestSize][largestSize];
-        int[] values = tree.getArray();
         for (int i = 0; i < largestSize; i++) {
             for (int j = 0; j < largestSize; j++) {
                 int v = weight(values[i], values[j]);
@@ -263,16 +256,23 @@ public class Graph {
                                     + distanceMatrix[k][j]))) {
                         distanceMatrix[i][j] =
                                 distanceMatrix[i][k] + distanceMatrix[k][j];
+                        if(distanceMatrix[i][j] > diameter) {
+                            diameter = distanceMatrix[i][j];
+                        }
                     }
                 }
             }
         }
-        for (int i = 0; i < largestSize; i++) {
+        /*for (int i = 0; i < largestSize; i++) {
             for (int j = 0; j < largestSize; j++) {
                 if (distanceMatrix[i][j] > diameter) {
                     diameter = distanceMatrix[i][j];
                 }
             }
+        }*/
+
+        if(diameter == 0 && largestSize > 1) {
+            diameter = 1;
         }
     }
 

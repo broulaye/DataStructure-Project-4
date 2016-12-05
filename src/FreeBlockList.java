@@ -138,6 +138,10 @@ public class FreeBlockList extends DLLinkedList<Block> {
      */
     public void freeUpSpace(int location, int length) {
         // add a new node when the list is empty
+       /* Block newBlock = new Block(location, location + length -1);
+        if(this.contains(newBlock)) {
+            System.out.println("Trying to free something that's been freed");
+        }*/
         if (size == 0) {
             add(0, new Block(location, location + length - 1));
             return;
