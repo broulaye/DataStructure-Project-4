@@ -60,7 +60,7 @@ public class FreeBlockList extends DLLinkedList<Block> {
      */
     public String printBlocks() {
 
-        if (size == 0) {
+        if (this.size() == 0) {
             return "(" + poolLength + ",0)";
         }
 

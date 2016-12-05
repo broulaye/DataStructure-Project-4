@@ -57,7 +57,7 @@ public class Hash {
         do {
 
             if (valueArray[pos] != null && !valueArray[pos].isTombStone()
-                    && str.equalsIgnoreCase(handle2String(valueArray[pos]))) {
+                    && str.equals(handle2String(valueArray[pos]))) {
 
                 return pos;
 

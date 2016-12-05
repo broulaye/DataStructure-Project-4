@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
 
 /**
  *
@@ -40,7 +41,7 @@ public class BufferPool implements BufferPoolADT {
         cacheHit = 0;
         cacheMiss = 0;
         numDiscWrite = 0;
-        this.blockSize = blockSize;
+        this.blockSize = expandBy;
         tempBlock = new BufferBlock(this.blockSize);
         for (int i = 0; i < numBuffs; i++) {
             pool[i] = new BufferBlock(this.blockSize);
@@ -178,10 +179,11 @@ public class BufferPool implements BufferPoolADT {
         int start = pos - (blockPos * blockSize);
 
         int result = findBlockForRead(blockPos);
-
-        int leng = (pool[result].getBlock()[start] << 8);
+        byte [] lenght = new byte[2];
+        lenght[0]= (pool[result].getBlock()[start]);
+        //int leng = (pool[result].getBlock()[start]);
         // check if length bytes span two blocks
-        if (start + 1 > blockSize - 1) {
+        if (start + 1 >= blockSize) {
             blockPos++;
             // load two consecutive blocks to read length bytes
             result = findBlockForRead(blockPos);
@@ -190,7 +192,14 @@ public class BufferPool implements BufferPoolADT {
         else {
             start++;
         }
-        leng += (pool[result].getBlock()[start]);
+        lenght[1] = (pool[result].getBlock()[start]);
+        short leng = ByteBuffer.wrap(lenght).getShort();
+/*
+        if(leng < 0) {
+            space = new byte[1];
+            return space;
+        }
+*/
         space = new byte[leng];
         int remaining = leng;
         // reset start cursor if first byte value is beyond block limit
@@ -403,9 +412,9 @@ public class BufferPool implements BufferPoolADT {
      * @return a string representation of the blocks
      */
     public String printFreeBlocks() {
-        if (freeBlocks.isEmpty()) {
+        /*if (freeBlocks.isEmpty()) {
             return "(" + (pool.length) + "," + "0)";
-        }
+        }*/
         return freeBlocks.printBlocks();
     }
 }

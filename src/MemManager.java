@@ -73,6 +73,9 @@ public class MemManager {
     public String get(Handle theHandle) {
         byte[] temp = null;
         temp = bufferPool.getBytes(temp, 0, theHandle.pos());
+        /*if(temp.length <= 1) {
+            return "";
+        }*/
         return new String(temp);
     }
 
