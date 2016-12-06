@@ -43,6 +43,8 @@ public class Hash {
         manager = memManager;
     }
 
+
+
     /**
      * Finds a string in the database
      *
@@ -66,20 +68,6 @@ public class Hash {
         }
         while (pos != index);
         return -1;
-    }
-
-    /**
-     * return the handle at the given position
-     * 
-     * @param pos
-     *            represent the position
-     * @return a handle
-     */
-    public Handle getHandle(int pos) {
-        if (pos < 0) {
-            return null;
-        }
-        return valueArray[pos];
     }
 
     /**
@@ -118,7 +106,7 @@ public class Hash {
                             + " database.");
             return valueArray[position];
         }
-        if (numbElements + 1 > (valueArray.length >> 1)) {
+        if (numbElements + 1 > (valueArray.length / 2)) {
             doubleSize();
             if (type.equals("song")) {
                 System.out.println("Song hash table size doubled.");
@@ -132,11 +120,13 @@ public class Hash {
         int pos = index;
         int i = 0;
         while (valueArray[pos] != null) {
+
             if (valueArray[pos].isTombStone()) {
                 valueArray[pos] = null;
                 break;
             }
             pos = (index + ++i * i) % valueArray.length;
+            //System.out.println(pos);
         }
         numbElements++;
         // store handle after storing string in memory pool
@@ -253,5 +243,6 @@ public class Hash {
             }
         }
     }
+
 
 }

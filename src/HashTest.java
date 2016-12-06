@@ -1,6 +1,5 @@
 import student.TestCase;
 
-
 // -------------------------------------------------------------------------
 
 /**
@@ -19,30 +18,34 @@ public class HashTest extends TestCase {
      * Test insertion and deletion from the hash table
      */
 
-     public void testInsert() {
+    public void testInsert() {
 
-         Hash myHash; MemManager memManager; try { memManager = new MemManager(80,
-         50, "mem.txt"); myHash = new Hash(2, memManager, testString);
-         assertNotNull(myHash.insertString("broulaye"));
-         assertNotNull(myHash.insertString("Cheick"));
-         assertEquals("|broulaye| 2\n|Cheick| 3\ntotal tests: 2\n",
-         myHash.printTable());
-         assertNotNull(myHash.removeString("broulaye"));
-         assertNull(myHash.removeString("broulaye"));
-         assertEquals("|Cheick| 3\ntotal tests: 1\n", myHash.printTable());
-         assertNotNull(myHash.removeString("Cheick"));
-         assertNull(myHash.removeString("Cheick"));
-         assertEquals("total tests: 0\n", myHash.printTable()); assertEquals(0,
-         myHash.getElement()); assertNotNull(myHash.insertString("Cheick"));
-         assertNotNull(myHash.insertString("Cheicks"));
-         assertNotNull(myHash.insertString("Cheikc"));
+        Hash myHash;
+        MemManager memManager;
+        try {
+            memManager = new MemManager(80, 50, "mem.txt");
+            myHash = new Hash(2, memManager, testString);
+            assertNotNull(myHash.insertString("broulaye"));
+            assertNotNull(myHash.insertString("Cheick"));
+            assertEquals("|broulaye| 2\n|Cheick| 3\ntotal tests: 2\n",
+                    myHash.printTable());
+            assertNotNull(myHash.removeString("broulaye"));
+            assertNull(myHash.removeString("broulaye"));
+            assertEquals("|Cheick| 3\ntotal tests: 1\n", myHash.printTable());
+            assertNotNull(myHash.removeString("Cheick"));
+            assertNull(myHash.removeString("Cheick"));
+            assertEquals("total tests: 0\n", myHash.printTable());
+            assertEquals(0, myHash.getElement());
+            assertNotNull(myHash.insertString("Cheick"));
+            assertNotNull(myHash.insertString("Cheicks"));
+            assertNotNull(myHash.insertString("Cheikc"));
 
-     } catch (Exception e) {
-         assertTrue(e instanceof Exception);
-     }
+        }
+        catch (Exception e) {
+            assertTrue(e instanceof Exception);
+        }
 
-     }
-
+    }
 
     /**
      * Test the hash table with negative size

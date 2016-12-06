@@ -162,6 +162,7 @@ public class Processor {
             throws Exception {
         artist = artist.trim();
         song = song.trim();
+        //String temp = song.trim();
         Handle artistHandle = artistHashTable.insertString(artist);
         Handle songHandle = songHashTable.insertString(song);
         artistHandle.setVertex(graph.addNode(artistHandle.getVertex()));

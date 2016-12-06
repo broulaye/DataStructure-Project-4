@@ -10,7 +10,7 @@ public enum Operation {
     /**
      * Represent the different operations
      */
-    list, delete, insert, remove, print;
+    insert, remove, print;
 
     /**
      * Get a string representation of the operation

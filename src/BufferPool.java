@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
 
 /**
  *
@@ -76,10 +75,11 @@ public class BufferPool implements BufferPoolADT {
             // keep expanding free block list until available block is found
             freeBlocks.expand(expandBy, length);
             try {
-                this.file.setLength((long) (this.file.length() + expandBy));
+                this.file.setLength(this.file.length() + expandBy);
+                // long len = file.length();
             }
             catch (IOException e) {
-             
+
                 e.printStackTrace();
             }
             length = length + expandBy;
@@ -179,9 +179,8 @@ public class BufferPool implements BufferPoolADT {
         int start = pos - (blockPos * blockSize);
 
         int result = findBlockForRead(blockPos);
-        byte [] lenght = new byte[2];
-        lenght[0]= (pool[result].getBlock()[start]);
-        //int leng = (pool[result].getBlock()[start]);
+
+        int leng = (pool[result].getBlock()[start] << 8);
         // check if length bytes span two blocks
         if (start + 1 >= blockSize) {
             blockPos++;
@@ -192,14 +191,13 @@ public class BufferPool implements BufferPoolADT {
         else {
             start++;
         }
-        lenght[1] = (pool[result].getBlock()[start]);
-        short leng = ByteBuffer.wrap(lenght).getShort();
-/*
-        if(leng < 0) {
+        leng += (pool[result].getBlock()[start]);
+
+        if (leng < 0) {
             space = new byte[1];
             return space;
         }
-*/
+
         space = new byte[leng];
         int remaining = leng;
         // reset start cursor if first byte value is beyond block limit
@@ -236,7 +234,9 @@ public class BufferPool implements BufferPoolADT {
 
     /**
      * This method find block for reading only
-     * @param blockPos position of the block
+     * 
+     * @param blockPos
+     *            position of the block
      * @return position of block in buffer pool
      */
     private int findBlockForRead(int blockPos) {
@@ -323,7 +323,7 @@ public class BufferPool implements BufferPoolADT {
         else {
             start++;
         }
-            
+
         len += (pool[result].getBlock()[start]);
 
         freeBlocks.freeUpSpace(location, len + 2);
@@ -412,9 +412,10 @@ public class BufferPool implements BufferPoolADT {
      * @return a string representation of the blocks
      */
     public String printFreeBlocks() {
-        /*if (freeBlocks.isEmpty()) {
-            return "(" + (pool.length) + "," + "0)";
-        }*/
+        /*
+         * if (freeBlocks.isEmpty()) { return "(" + (pool.length) + "," + "0)";
+         * }
+         */
         return freeBlocks.printBlocks();
     }
 }

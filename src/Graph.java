@@ -17,13 +17,15 @@ public class Graph {
     private int diameter;
     private int[] unionArray;
     private int[] unionWeight;
-    private int[] values;
     private int currentPosition;
     private int expandBy;
+    private int[] values;
 
     /**
      * Default constructor that initialized the variables
-     * @param size initial size of graph
+     * 
+     * @param size
+     *            initial size of graph
      */
     public Graph(int size) {
         graphArray = new Vertex[size];
@@ -94,9 +96,7 @@ public class Graph {
     private void expandGraph() {
         int newLenght = graphArray.length + expandBy;
         Vertex[] newGraph = new Vertex[newLenght];
-        for (int i = 0; i < graphArray.length; i++) {
-            newGraph[i] = graphArray[i];
-        }
+        System.arraycopy(graphArray, 0, newGraph, 0, graphArray.length);
         graphArray = newGraph;
     }
 
@@ -134,24 +134,26 @@ public class Graph {
      * private method that compute the tree of the vertex with the most element
      */
     private void computeTree() {
+        DLLinkedList roots = new DLLinkedList();
         if (largestSize == 0) {
             return;
         }
         values = new int[largestSize];
         values[0] = largestIndex;
         int k = 0;
-        for(int i = 1; i < largestSize; i++) {
-            if(unionArray[k] != largestIndex) {
+        for (int i = 1; i < largestSize; i++) {
+            if (unionArray[k] != largestIndex && !roots.contains(unionArray[k])) {
                 k++;
                 i--;
                 continue;
+
             }
             values[i] = k;
+            roots.add(k);
             k++;
         }
 
     }
-
 
     /**
      * get the vertex at the given index
@@ -236,6 +238,7 @@ public class Graph {
             return;
         }
         int[][] distanceMatrix = new int[largestSize][largestSize];
+        // int[] values = tree.getArray();
         for (int i = 0; i < largestSize; i++) {
             for (int j = 0; j < largestSize; j++) {
                 int v = weight(values[i], values[j]);
@@ -249,29 +252,24 @@ public class Graph {
         }
         for (int k = 0; k < largestSize; k++) { // Compute all k paths
             for (int i = 0; i < largestSize; i++) {
+                if (distanceMatrix[i][k] == Integer.MAX_VALUE) {
+                    continue;
+                }
                 for (int j = 0; j < largestSize; j++) {
-                    if ((distanceMatrix[i][k] != Integer.MAX_VALUE)
-                            && (distanceMatrix[k][j] != Integer.MAX_VALUE)
+                    if ((distanceMatrix[k][j] != Integer.MAX_VALUE)
                             && (distanceMatrix[i][j] > (distanceMatrix[i][k]
                                     + distanceMatrix[k][j]))) {
                         distanceMatrix[i][j] =
                                 distanceMatrix[i][k] + distanceMatrix[k][j];
-                        if(distanceMatrix[i][j] > diameter) {
+                        if (distanceMatrix[i][j] > diameter) {
                             diameter = distanceMatrix[i][j];
                         }
                     }
                 }
             }
         }
-        /*for (int i = 0; i < largestSize; i++) {
-            for (int j = 0; j < largestSize; j++) {
-                if (distanceMatrix[i][j] > diameter) {
-                    diameter = distanceMatrix[i][j];
-                }
-            }
-        }*/
 
-        if(diameter == 0 && largestSize > 1) {
+        if (diameter == 0 && largestSize > 1) {
             diameter = 1;
         }
     }

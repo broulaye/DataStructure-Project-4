@@ -1,3 +1,5 @@
+import java.nio.ByteBuffer;
+
 /**
  * This class represent a block in the file
  * 
@@ -100,6 +102,7 @@ public class BufferBlock {
      * @return string representation of the block
      */
     public String toString() {
-        return new String(this.aBlock);
+        ByteBuffer byteBuffer = ByteBuffer.wrap(aBlock);
+        return byteBuffer.toString();
     }
 }

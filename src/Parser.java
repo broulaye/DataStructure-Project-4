@@ -44,12 +44,8 @@ public class Parser {
                 String[] line = token.split(" ");
                 switch (line[0]) {
                     case "insert":
-                    case "delete":
                         if (line[0].equals("insert")) {
                             command.setOp(Operation.insert);
-                        }
-                        else {
-                            command.setOp(Operation.delete);
                         }
                         for (int i = 1; i < line.length; i++) {
                             s += line[i] + " ";
@@ -76,11 +72,7 @@ public class Parser {
                         command.setValues(value);
                         break;
                     case "print":
-                    case "list":
-                        if (line[0].equals("list")) {
-                            command.setOp(Operation.list);
-                        }
-                        else {
+                        if (line[0].equals("print")) {
                             command.setOp(Operation.print);
                         }
                         if (line[1].equals("song")) {
